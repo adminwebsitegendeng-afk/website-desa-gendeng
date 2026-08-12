@@ -74,6 +74,7 @@ export interface HomepageRecord {
   heroDesc: string;
   heroImage: string;
   heroCtaText: string;
+  highlights?: unknown[]; // Allow JSON array
 }
 
 // Initial Default Seed Data

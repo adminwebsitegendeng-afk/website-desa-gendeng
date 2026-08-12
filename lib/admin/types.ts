@@ -66,9 +66,20 @@ export interface GaleriItem {
   date: string;
 }
 
+export interface HighlightReference {
+  type: "warga" | "wisata" | "potensi" | "custom";
+  id: string; // The ID of the item, or empty if custom
+  icon: string;
+  // If custom or data is missing, we fallback to these:
+  customTitle?: string;
+  customDesc?: string;
+  customImage?: string;
+}
+
 export interface HomepageData {
   heroWelcome: string;
   heroTagline: string;
   heroDesc: string;
   heroImage: string;
+  highlights: HighlightReference[];
 }

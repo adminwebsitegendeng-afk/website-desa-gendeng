@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
-import { getHomepageData, getProfilData, getWargaList, subscribeDBChange } from "@/lib/admin/services/adminService";
-import { HomepageData, ProfilData, WargaItem } from "@/lib/admin/types";
+import { getHomepageData, getProfilData, getWargaList, getWisataList, getPotensiList, subscribeDBChange } from "@/lib/admin/services/adminService";
+import { HomepageData, ProfilData, WargaItem, WisataItem, PotensiItem } from "@/lib/admin/types";
 
 export default function Home() {
   const { lang } = useLanguage();
@@ -14,49 +14,56 @@ export default function Home() {
   const [homepage, setHomepage] = useState<HomepageData | null>(null);
   const [profil, setProfil] = useState<ProfilData | null>(null);
   const [activities, setActivities] = useState<WargaItem[]>([]);
+  const [wisata, setWisata] = useState<WisataItem[]>([]);
+  const [potensi, setPotensi] = useState<PotensiItem[]>([]);
 
   useEffect(() => {
     async function loadCMSData() {
-      const [hp, pr, wg] = await Promise.all([
+      const [hp, pr, wg, ws, pt] = await Promise.all([
         getHomepageData(),
         getProfilData(),
         getWargaList(),
+        getWisataList(),
+        getPotensiList(),
       ]);
       setHomepage(hp);
       setProfil(pr);
       setActivities(wg.filter((item) => item.status === "published"));
+      setWisata(ws.filter((item) => item.status === "published"));
+      setPotensi(pt.filter((item) => item.status === "published"));
     }
     loadCMSData();
     const unsubscribe = subscribeDBChange(loadCMSData);
     return () => unsubscribe();
   }, []);
 
-  const highlights = [
-    {
-      title: tr(t.home.hl1Title, lang),
-      desc: tr(t.home.hl1Desc, lang),
-      image: "/images/hero_village.png",
-      icon: "🌾",
-    },
-    {
-      title: tr(t.home.hl2Title, lang),
-      desc: tr(t.home.hl2Desc, lang),
-      image: "/images/potensi_crafts.png",
-      icon: "🛍️",
-    },
-    {
-      title: tr(t.home.hl3Title, lang),
-      desc: tr(t.home.hl3Desc, lang),
-      image: "/images/community_event.png",
-      icon: "🎭",
-    },
-    {
-      title: tr(t.home.hl4Title, lang),
-      desc: tr(t.home.hl4Desc, lang),
-      image: "/images/wisata_waterfall.png",
-      icon: "⛰️",
-    },
+  const defaultHighlights = [
+    { title: tr(t.home.hl1Title, lang), desc: tr(t.home.hl1Desc, lang), image: "/images/hero_village.png", icon: "🌾" },
+    { title: tr(t.home.hl2Title, lang), desc: tr(t.home.hl2Desc, lang), image: "/images/potensi_crafts.png", icon: "🛍️" },
+    { title: tr(t.home.hl3Title, lang), desc: tr(t.home.hl3Desc, lang), image: "/images/community_event.png", icon: "🎭" },
+    { title: tr(t.home.hl4Title, lang), desc: tr(t.home.hl4Desc, lang), image: "/images/wisata_waterfall.png", icon: "⛰️" },
   ];
+
+  const highlights = homepage?.highlights?.length ? homepage.highlights.map(hl => {
+    if (hl.type === "warga") {
+      const act = activities.find(a => a.id === hl.id);
+      if (act) return { title: act.title, desc: act.shortDesc || act.description, image: act.coverImage, icon: hl.icon };
+    } else if (hl.type === "wisata") {
+      const ws = wisata.find(a => a.id === hl.id);
+      if (ws) return { title: ws.title, desc: ws.description, image: ws.coverImage, icon: hl.icon };
+    } else if (hl.type === "potensi") {
+      const pt = potensi.find(a => a.id === hl.id);
+      if (pt) return { title: pt.title, desc: pt.description, image: pt.coverImage, icon: hl.icon };
+    }
+    
+    // Fallback if custom or data not found
+    return {
+      title: hl.customTitle || "Highlight",
+      desc: hl.customDesc || "-",
+      image: hl.customImage || "/images/hero_village.png",
+      icon: hl.icon || "✨"
+    };
+  }) : defaultHighlights;
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">

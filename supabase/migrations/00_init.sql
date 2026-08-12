@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS homepage_settings (
   "heroTagline" TEXT,
   "heroDesc" TEXT,
   "heroImage" TEXT,
-  "heroCtaText" TEXT
+  "heroCtaText" TEXT,
+  "highlights" JSONB DEFAULT '[]'
 );
 
 -- Note: We are allowing all operations (anon / authenticated) for this local-first / client-side CMS setup. 

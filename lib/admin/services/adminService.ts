@@ -181,8 +181,25 @@ export async function getHomepageData(): Promise<HomepageRecord> {
       heroDesc: "Memajukan desa dan masyarakat.",
       heroImage: "/images/hero_village.png",
       heroCtaText: "Jelajahi",
+      highlights: [
+        { type: "custom", id: "", icon: "🌾", customTitle: "Pertanian", customDesc: "Lahan subur dan hasil pertanian berkualitas", customImage: "/images/hero_village.png" },
+        { type: "custom", id: "", icon: "🛍️", customTitle: "UMKM Unggulan", customDesc: "Berbagai produk lokal kreatif", customImage: "/images/potensi_crafts.png" },
+        { type: "custom", id: "", icon: "🎭", customTitle: "Budaya & Tradisi", customDesc: "Kekayaan budaya dan tradisi", customImage: "/images/community_event.png" },
+        { type: "custom", id: "", icon: "⛰️", customTitle: "Pariwisata Alam", customDesc: "Keindahan alam yang menjadi daya tarik", customImage: "/images/wisata_waterfall.png" },
+      ]
     } as HomepageRecord;
   }
+  
+  // Ensure highlights exists even for old records
+  if (!data.highlights || !Array.isArray(data.highlights) || data.highlights.length === 0) {
+    data.highlights = [
+      { type: "custom", id: "", icon: "🌾", customTitle: "Pertanian", customDesc: "Lahan subur dan hasil pertanian berkualitas", customImage: "/images/hero_village.png" },
+      { type: "custom", id: "", icon: "🛍️", customTitle: "UMKM Unggulan", customDesc: "Berbagai produk lokal kreatif", customImage: "/images/potensi_crafts.png" },
+      { type: "custom", id: "", icon: "🎭", customTitle: "Budaya & Tradisi", customDesc: "Kekayaan budaya dan tradisi", customImage: "/images/community_event.png" },
+      { type: "custom", id: "", icon: "⛰️", customTitle: "Pariwisata Alam", customDesc: "Keindahan alam yang menjadi daya tarik", customImage: "/images/wisata_waterfall.png" },
+    ];
+  }
+  
   return data as HomepageRecord;
 }
 export async function updateHomepageData(data: Partial<HomepageRecord>): Promise<HomepageRecord> {
