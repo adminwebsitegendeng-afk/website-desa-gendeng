@@ -68,17 +68,23 @@ export default function AdminPotensiEkonomiPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const slug = form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    const finalCover = form.gallery.length > 0 ? form.gallery[0] : form.coverImage;
-    const finalData = { ...form, coverImage: finalCover, slug };
-    
-    if (editingItem) {
-      await updatePotensi(editingItem.id, finalData);
-    } else {
-      await createPotensi(finalData);
+    try {
+      const slug = form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const finalCover = form.gallery.length > 0 ? form.gallery[0] : form.coverImage;
+      const finalData = { ...form, coverImage: finalCover, slug };
+      
+      if (editingItem) {
+        await updatePotensi(editingItem.id, finalData);
+      } else {
+        await createPotensi(finalData);
+      }
+      setIsModalOpen(false);
+      loadData();
+    } catch (err: unknown) {
+      console.error(err);
+      const msg = err instanceof Error ? err.message : String(err);
+      alert("Error: " + msg);
     }
-    setIsModalOpen(false);
-    loadData();
   };
 
   const handleDelete = async (id: string) => {

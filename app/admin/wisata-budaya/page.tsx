@@ -70,21 +70,27 @@ export default function AdminWisataBudayaPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const slug = form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    const finalCover = form.gallery.length > 0 ? form.gallery[0] : form.coverImage;
-    const payload = {
-      ...form,
-      coverImage: finalCover,
-      slug,
-      gallery: form.gallery,
-    };
-    if (editingItem) {
-      await updateWisata(editingItem.id, payload);
-    } else {
-      await createWisata(payload);
+    try {
+      const slug = form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const finalCover = form.gallery.length > 0 ? form.gallery[0] : form.coverImage;
+      const payload = {
+        ...form,
+        coverImage: finalCover,
+        slug,
+        gallery: form.gallery,
+      };
+      if (editingItem) {
+        await updateWisata(editingItem.id, payload);
+      } else {
+        await createWisata(payload);
+      }
+      setIsModalOpen(false);
+      loadData();
+    } catch (err: unknown) {
+      console.error(err);
+      const msg = err instanceof Error ? err.message : String(err);
+      alert("Error: " + msg);
     }
-    setIsModalOpen(false);
-    loadData();
   };
 
   const handleDelete = async (id: string) => {
