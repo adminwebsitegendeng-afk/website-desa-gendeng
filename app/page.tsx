@@ -38,7 +38,7 @@ export default function Home() {
   }, []);
 
   const defaultHighlights = [
-    { title: tr(t.home.hl1Title, lang), desc: tr(t.home.hl1Desc, lang), image: "/images/hero_village.png", icon: "🌾", href: "" },
+    { title: tr(t.home.hl1Title, lang), desc: tr(t.home.hl1Desc, lang), image: "/images/hero_gendeng.png", icon: "🌾", href: "" },
     { title: tr(t.home.hl2Title, lang), desc: tr(t.home.hl2Desc, lang), image: "/images/potensi_crafts.png", icon: "🛍️", href: "" },
     { title: tr(t.home.hl3Title, lang), desc: tr(t.home.hl3Desc, lang), image: "/images/community_event.png", icon: "🎭", href: "" },
     { title: tr(t.home.hl4Title, lang), desc: tr(t.home.hl4Desc, lang), image: "/images/wisata_waterfall.png", icon: "⛰️", href: "" },
@@ -60,7 +60,7 @@ export default function Home() {
     return {
       title: hl.customTitle || "Highlight",
       desc: hl.customDesc || "-",
-      image: hl.customImage || "/images/hero_village.png",
+      image: hl.customImage || "/images/hero_gendeng.png",
       icon: hl.icon || "✨",
       href: ""
     };

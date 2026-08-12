@@ -172,7 +172,7 @@ export default function KontakLokasi() {
       <section className="relative bg-primary-dark text-white py-14 sm:py-20 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero_village.png"
+            src="/images/hero_gendeng.png"
             alt="Kontak & Lokasi Kantor Desa Gendeng"
             fill
             className="object-cover opacity-50"

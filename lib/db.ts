@@ -102,8 +102,8 @@ const initialWisata: WisataRecord[] = [
     category: "Ekowisata",
     location: "Gendeng, Gondokusuman",
     description: "Kampung yang nyaman dengan suasana kekeluargaan yang masih terjaga.",
-    coverImage: "/images/hero_village.png",
-    gallery: ["/images/hero_village.png", "/images/community_event.png"],
+    coverImage: "/images/hero_gendeng.png",
+    gallery: ["/images/hero_gendeng.png", "/images/community_event.png"],
     status: "published",
   },
   {
@@ -186,7 +186,7 @@ const initialPotensi: PotensiRecord[] = [
 
 const initialGaleri: GaleriRecord[] = [
   { id: "g-1", title: "Tradisi Gunungan Warga", category: "Budaya", imageUrl: "/images/community_event.png", date: "2026-06-15", status: "published" },
-  { id: "g-2", title: "Pemandangan Kampung Gendeng", category: "Lingkungan", imageUrl: "/images/hero_village.png", date: "2026-05-10", status: "published" },
+  { id: "g-2", title: "Pemandangan Kampung Gendeng", category: "Lingkungan", imageUrl: "/images/hero_gendeng.png", date: "2026-05-10", status: "published" },
   { id: "g-3", title: "Workshop Batik & Anyaman", category: "UMKM", imageUrl: "/images/potensi_crafts.png", date: "2026-04-22", status: "published" },
 ];
 

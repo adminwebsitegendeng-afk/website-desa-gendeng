@@ -25,7 +25,7 @@ export default function AdminWisataBudayaPage() {
     category: "Ekowisata",
     location: "Gendeng, Gondokusuman",
     description: "",
-    coverImage: "/images/hero_village.png",
+    coverImage: "/images/hero_gendeng.png",
     gallery: [] as string[],
     status: "published" as "published" | "draft",
   });
@@ -47,7 +47,7 @@ export default function AdminWisataBudayaPage() {
       category: "Ekowisata",
       location: "Gendeng, Gondokusuman",
       description: "",
-      coverImage: "/images/hero_village.png",
+      coverImage: "/images/hero_gendeng.png",
       gallery: [],
       status: "published",
     });

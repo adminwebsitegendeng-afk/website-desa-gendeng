@@ -48,7 +48,7 @@ export const communityActivities: CommunityActivity[] = [
     gallery: [
       "/images/community_event.png",
       "/images/potensi_crafts.png",
-      "/images/hero_village.png"
+      "/images/hero_gendeng.png"
     ],
     organizer: {
       id: "Tim Penggerak PKK RW 05 Kampung Gendeng",
@@ -116,9 +116,9 @@ export const communityActivities: CommunityActivity[] = [
       id: "Forum rembuk warga yang dihadiri seluruh Ketua RT dan Tokoh Masyarakat Kampung Gendeng untuk menyerap aspirasi pembangunan fisik, keamanan lingkungan pos ronda, dan pengelolaan sampah pemukiman.",
       en: "A neighborhood assembly attended by all RT Heads and Community Figures of Kampung Gendeng to gather aspirations for infrastructure, security guard posts, and residential waste management."
     },
-    coverImage: "/images/hero_village.png",
+    coverImage: "/images/hero_gendeng.png",
     gallery: [
-      "/images/hero_village.png",
+      "/images/hero_gendeng.png",
       "/images/community_event.png",
       "/images/kades_portrait.png"
     ],
@@ -191,7 +191,7 @@ export const communityActivities: CommunityActivity[] = [
     coverImage: "/images/community_event.png",
     gallery: [
       "/images/community_event.png",
-      "/images/hero_village.png",
+      "/images/hero_gendeng.png",
       "/images/potensi_crafts.png"
     ],
     organizer: {
@@ -224,9 +224,9 @@ export const communityActivities: CommunityActivity[] = [
       id: "Semangat guyub warga Kampung Gendeng terlihat nyata dalam aksi kerja bakti hari Minggu. Warga bahu-membahu menanam tanaman hias di sepanjang jalan kampung, mengecat pagar, dan menikmati hidangan tradisi bersama.",
       en: "The community spirit of Kampung Gendeng comes alive during Sunday cleanups. Residents work shoulder to shoulder planting flowers along neighborhood streets, painting fences, and sharing traditional meals."
     },
-    coverImage: "/images/hero_village.png",
+    coverImage: "/images/hero_gendeng.png",
     gallery: [
-      "/images/hero_village.png",
+      "/images/hero_gendeng.png",
       "/images/potensi_crafts.png",
       "/images/community_event.png"
     ],
