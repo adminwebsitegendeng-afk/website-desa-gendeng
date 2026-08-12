@@ -320,6 +320,18 @@ export default function AdminWargaKomunitasPage() {
           </div>
 
           <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Deskripsi Lengkap Kegiatan</label>
+            <textarea
+              required
+              rows={4}
+              value={form.description}
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+              placeholder="Ceritakan detail kegiatan selengkap-lengkapnya di sini..."
+            />
+          </div>
+
+          <div>
             <label className="block text-xs font-extrabold uppercase text-dark mb-1">Galeri Foto (Maks 4)</label>
             <div className="flex flex-col gap-3">
               <input
