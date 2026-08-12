@@ -97,9 +97,9 @@ export default function AdminWargaKomunitasPage() {
       setIsModalOpen(false);
       loadData();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      alert("Error saat menyimpan: " + msg);
       console.error(err);
+      const msg = err instanceof Error ? err.message : (typeof err === "object" ? JSON.stringify(err) : String(err));
+      alert("Error saat menyimpan: " + msg);
     }
   };
 

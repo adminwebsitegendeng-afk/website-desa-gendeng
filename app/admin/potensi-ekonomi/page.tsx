@@ -82,7 +82,7 @@ export default function AdminPotensiEkonomiPage() {
       loadData();
     } catch (err: unknown) {
       console.error(err);
-      const msg = err instanceof Error ? err.message : String(err);
+      const msg = err instanceof Error ? err.message : (typeof err === "object" ? JSON.stringify(err) : String(err));
       alert("Error: " + msg);
     }
   };
