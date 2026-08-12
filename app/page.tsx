@@ -176,7 +176,7 @@ export default function Home() {
                 className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios flex flex-col h-full hover-scale"
               >
                 {/* Visual Image half */}
-                <div className="relative h-36 sm:h-32 w-full bg-primary/5">
+                <div className="relative h-56 sm:h-52 w-full bg-primary/5">
                   <Image
                     src={hl.image}
                     alt={hl.title}
