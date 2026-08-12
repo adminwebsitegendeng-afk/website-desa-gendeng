@@ -181,7 +181,7 @@ export default function PotensiEkonomi() {
                             href={`/potensi-ekonomi/${p.slug}`}
                             className="inline-flex items-center gap-1 text-[11px] font-extrabold text-primary hover:text-primary-hover active-press uppercase tracking-wider"
                           >
-                            Baca &rarr;
+                            Lihat Selengkapnya &rarr;
                           </Link>
                         </div>
                       </div>
