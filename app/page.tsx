@@ -101,7 +101,6 @@ export default function Home() {
                 href="/profil-desa"
                 className="bg-primary hover:bg-primary-hover active-press text-white px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-extrabold shadow-ios transition-all duration-200 flex items-center justify-center gap-2"
               >
-                <span>🔍</span>
                 <span>{tr(t.home.heroExplore, lang)}</span>
               </Link>
               <button
