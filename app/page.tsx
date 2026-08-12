@@ -233,7 +233,7 @@ export default function Home() {
                 key={act.id}
                 className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios hover-scale flex flex-col h-full"
               >
-                <div className="relative h-44 sm:h-48 w-full bg-primary/5">
+                <div className="relative h-56 sm:h-52 w-full bg-primary/5">
                   <Image
                     src={act.coverImage}
                     alt={act.title}

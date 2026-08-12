@@ -141,7 +141,7 @@ export default function WargaKomunitasPage() {
                     className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios hover-scale flex flex-col h-full"
                   >
                     {/* Photo Container */}
-                    <div className="relative h-48 sm:h-52 w-full bg-primary/5">
+                    <div className="relative h-56 sm:h-52 w-full bg-primary/5">
                       <Image
                         src={coverImage}
                         alt={act.title || "Kegiatan Warga"}

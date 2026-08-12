@@ -157,7 +157,7 @@ export default function PotensiEkonomi() {
                       key={idx}
                       className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios flex flex-col h-full hover-scale"
                     >
-                      <div className="relative h-44 w-full bg-primary/5">
+                      <div className="relative h-56 sm:h-52 w-full bg-primary/5">
                         <Image src={p.image} alt={p.title} fill className="object-cover" />
                       </div>
                       <div className="p-5 flex-grow flex flex-col justify-between">
