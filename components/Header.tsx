@@ -12,6 +12,15 @@ export default function Header() {
   const pathname = usePathname();
   const { lang, setLang } = useLanguage();
 
+  const handleLangChange = (newLang: "id" | "en") => {
+    setLang(newLang);
+    const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+    if (select) {
+      select.value = newLang;
+      select.dispatchEvent(new Event("change"));
+    }
+  };
+
   const navLinks = [
     { name: tr(t.nav.home, lang), href: "/" },
     { name: tr(t.nav.profil, lang), href: "/profil-desa" },
@@ -62,14 +71,14 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
             <div className="flex bg-gray-100/90 rounded-full p-1 border border-gray-200/60 shadow-inner">
               <button
-                onClick={() => setLang("id")}
+                onClick={() => handleLangChange("id")}
                 className={`text-xs font-extrabold px-3 py-1.5 rounded-full transition-all active-press ${lang === "id" ? "bg-[#14532d] text-white shadow-sm" : "text-[#6b7280] hover:text-[#14532d]"
                   }`}
               >
                 ID
               </button>
               <button
-                onClick={() => setLang("en")}
+                onClick={() => handleLangChange("en")}
                 className={`text-xs font-extrabold px-3 py-1.5 rounded-full transition-all active-press ${lang === "en" ? "bg-[#14532d] text-white shadow-sm" : "text-[#6b7280] hover:text-[#14532d]"
                   }`}
               >
@@ -123,14 +132,14 @@ export default function Header() {
             })}
             <div className="pt-3 mt-2 border-t border-gray-100 flex gap-2">
               <button
-                onClick={() => { setLang("id"); setIsOpen(false); }}
+                onClick={() => { handleLangChange("id"); setIsOpen(false); }}
                 className={`flex-1 py-2.5 rounded-2xl text-xs font-extrabold active-press transition-all ${lang === "id" ? "bg-[#14532d] text-white shadow-sm" : "bg-gray-100 text-[#6b7280]"
                   }`}
               >
                 🇮🇩 Indonesia
               </button>
               <button
-                onClick={() => { setLang("en"); setIsOpen(false); }}
+                onClick={() => { handleLangChange("en"); setIsOpen(false); }}
                 className={`flex-1 py-2.5 rounded-2xl text-xs font-extrabold active-press transition-all ${lang === "en" ? "bg-[#14532d] text-white shadow-sm" : "bg-gray-100 text-[#6b7280]"
                   }`}
               >

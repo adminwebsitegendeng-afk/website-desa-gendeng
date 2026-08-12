@@ -35,6 +35,27 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Hide Google Translate Banner and Popups */
+body {
+  top: 0 !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+.goog-te-balloon-frame {
+  display: none !important;
+}
+.skiptranslate > iframe {
+  display: none !important;
+}
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+
 /* Custom premium hover and animation effects */
 .hover-scale {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);

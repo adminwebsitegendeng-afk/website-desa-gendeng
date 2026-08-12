@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import PublicLayoutWrapper from "@/components/PublicLayoutWrapper";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import GoogleTranslate from "@/components/GoogleTranslate";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${plusJakarta.variable} font-sans antialiased text-[#111827] bg-white flex flex-col min-h-screen`}
       >
+        <GoogleTranslate />
         <LanguageProvider>
           <PublicLayoutWrapper>{children}</PublicLayoutWrapper>
         </LanguageProvider>
