@@ -52,6 +52,14 @@ font {
   background-color: transparent !important;
   box-shadow: none !important;
 }
+/* Hide the Google Translate tooltip popup */
+#goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
   display: none !important;
 }
