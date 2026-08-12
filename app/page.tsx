@@ -26,7 +26,7 @@ export default function Home() {
         getWisataList(),
         getPotensiList(),
       ]);
-      setHomepage(hp);
+      setHomepage(hp as unknown as HomepageData);
       setProfil(pr);
       setActivities(wg.filter((item) => item.status === "published"));
       setWisata(ws.filter((item) => item.status === "published"));

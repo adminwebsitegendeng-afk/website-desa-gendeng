@@ -20,7 +20,7 @@ export default function AdminHomepagePage() {
         getWisataList(),
         getPotensiList(),
       ]);
-      setForm(data);
+      setForm(data as unknown as HomepageData);
       setWarga(wg.filter(i => i.status === "published"));
       setWisata(ws.filter(i => i.status === "published"));
       setPotensi(pt.filter(i => i.status === "published"));
