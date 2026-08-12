@@ -123,16 +123,38 @@ export default function AdminHomepagePage() {
 
           <div>
             <label className="block text-xs font-extrabold uppercase text-dark mb-1">Gambar Latar Hero Background</label>
-            <select
-              value={form.heroImage}
-              onChange={(e) => setForm({ ...form, heroImage: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary bg-white"
-            >
-              <option value="/images/hero_village.png">Foto Kampung Gendeng (hero_village.png)</option>
-              <option value="/images/community_event.png">Kegiatan Warga (community_event.png)</option>
-              <option value="/images/potensi_crafts.png">Kerajinan Kreatif (potensi_crafts.png)</option>
-              <option value="/images/wisata_waterfall.png">Lanskap Wisata (wisata_waterfall.png)</option>
-            </select>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    try {
+                      const { uploadImageFile } = await import("@/lib/upload");
+                      const url = await uploadImageFile(file);
+                      setForm({ ...form, heroImage: url });
+                    } catch (err: unknown) {
+                      console.error(err);
+                      alert("Gagal mengunggah gambar");
+                    }
+                  }
+                }}
+                className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={form.heroImage}
+                onChange={(e) => setForm({ ...form, heroImage: e.target.value })}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+                placeholder="Atau masukkan URL gambar..."
+              />
+            </div>
+            {form.heroImage && (
+              <div className="mt-2 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img src={form.heroImage} alt="Hero Preview" className="w-full h-full object-cover" />
+              </div>
+            )}
           </div>
         </div>
 
