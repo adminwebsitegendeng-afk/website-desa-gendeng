@@ -69,6 +69,7 @@ export async function getProfilData(): Promise<ProfilRecord> {
       contactAddress: "-",
       contactPhone: "-",
       contactEmail: "-",
+      officials: [],
     } as ProfilRecord;
   }
   return data as ProfilRecord;

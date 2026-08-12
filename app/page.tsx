@@ -124,7 +124,7 @@ export default function Home() {
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative w-full max-w-[260px] sm:max-w-xs aspect-square rounded-3xl overflow-hidden shadow-ios-lg border-4 border-tint">
                 <Image
-                  src="/images/kades_portrait.png"
+                  src={profil?.greetingImage || "/images/kades_portrait.png"}
                   alt="Kepala Desa Gendeng"
                   fill
                   className="object-cover object-top"

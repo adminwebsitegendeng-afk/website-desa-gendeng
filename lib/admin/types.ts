@@ -12,12 +12,14 @@ export interface ProfilData {
   greetingName: string;
   greetingRole: string;
   greetingMessage: string;
+  greetingImage: string;
   historyText: string;
   visionText: string;
   missionList: string[];
   contactAddress: string;
   contactPhone: string;
   contactEmail: string;
+  officials: { name: string; role: string; image: string }[];
 }
 
 export interface WargaItem {

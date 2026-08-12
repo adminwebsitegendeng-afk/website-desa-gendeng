@@ -66,6 +66,7 @@ export interface ProfilRecord {
   contactAddress: string;
   contactPhone: string;
   contactEmail: string;
+  officials: { name: string; role: string; image: string }[];
 }
 
 export interface HomepageRecord {
@@ -206,9 +207,10 @@ const initialProfil: ProfilRecord = {
     "Mendorong pertumbuhan UMKM kreatif berbahan serat alam, bambu, dan potensi lokal lainnya.",
     "Melestarikan adat-istiadat, kesenian lokal, serta situs-situs budaya bersejarah di wilayah desa.",
   ],
-  contactAddress: "Jl. Mawar II No.32, Baciro, Kec. Gondokusuman, Kota Yogyakarta, DIY 55225",
-  contactPhone: "(0274) 512345",
-  contactEmail: "info@desagendeng.go.id",
+  contactAddress: "Balai Kampung Gendeng, RT 01 RW 05, Baciro, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55225",
+  contactPhone: "+62 812-3456-7890",
+  contactEmail: "halo@kampunggendeng.id",
+  officials: [],
 };
 
 const initialHomepage: HomepageRecord = {

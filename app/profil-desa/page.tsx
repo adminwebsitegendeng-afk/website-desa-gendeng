@@ -62,9 +62,12 @@ export default function ProfilDesa() {
     {
       year: "2020",
       title: lang === "en" ? "Independent Village DIY" : "Desa Mandiri DIY",
-      desc: lang === "en" ? "Awarded Independent Village status in DIY Province." : "Mendapat penghargaan sebagai Desa Mandiri tingkat D.I. Yogyakarta."
     },
   ];
+
+  const displayOfficials = profil?.officials && profil.officials.length > 0 
+    ? profil.officials 
+    : officials;
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
@@ -194,17 +197,23 @@ export default function ProfilDesa() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {officials.map((official, idx) => (
+            {displayOfficials.map((official, idx) => (
               <div
                 key={idx}
                 className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios text-center flex flex-col hover-scale"
               >
                 <div className="h-56 sm:h-64 bg-tint/60 relative flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white flex items-center justify-center text-primary text-3xl sm:text-4xl font-bold shadow-ios">
-                      🧑‍💼
-                    </div>
-                    <span className="text-[11px] text-primary font-extrabold mt-3 tracking-wider uppercase bg-white px-3 py-1 rounded-full shadow-sm">
+                  <div className="flex flex-col items-center justify-center w-full h-full">
+                    {official.image && official.image !== "" && official.image !== "/images/kades_portrait.png" ? (
+                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-ios">
+                        <Image src={official.image} alt={official.name} fill className="object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white flex items-center justify-center text-primary text-3xl sm:text-4xl font-bold shadow-ios">
+                        🧑‍💼
+                      </div>
+                    )}
+                    <span className="text-[11px] text-primary font-extrabold mt-3 tracking-wider uppercase bg-white px-3 py-1 rounded-full shadow-sm z-10">
                       {lang === "en" ? "Community Administrator" : "Pemerintah Desa"}
                     </span>
                   </div>

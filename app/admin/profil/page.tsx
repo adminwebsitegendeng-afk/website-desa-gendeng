@@ -71,6 +71,41 @@ export default function AdminProfilPage() {
             </div>
           </div>
           <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Foto Pimpinan</label>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    try {
+                      const { uploadImageFile } = await import("@/lib/upload");
+                      const url = await uploadImageFile(file);
+                      setForm({ ...form, greetingImage: url });
+                    } catch (err: unknown) {
+                      console.error(err);
+                      alert("Gagal mengunggah gambar");
+                    }
+                  }
+                }}
+                className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={form.greetingImage}
+                onChange={(e) => setForm({ ...form, greetingImage: e.target.value })}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+                placeholder="Atau masukkan URL / path gambar..."
+              />
+            </div>
+            {form.greetingImage && (
+              <div className="mt-2 relative w-32 h-32 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img src={form.greetingImage} alt="Preview" className="w-full h-full object-cover" />
+              </div>
+            )}
+          </div>
+          <div>
             <label className="block text-xs font-extrabold uppercase text-dark mb-1">Jabatan / Role</label>
             <input
               type="text"
@@ -144,6 +179,110 @@ export default function AdminProfilPage() {
                 className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Aparatur Pemerintahan Section */}
+        <div className="bg-white rounded-3xl border border-gray-200/70 p-6 shadow-ios space-y-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider">4. Aparatur Pemerintahan Desa</h3>
+            <button
+              type="button"
+              onClick={() => {
+                const newOfficial = { name: "Nama Baru", role: "Jabatan", image: "/images/kades_portrait.png" };
+                setForm({ ...form, officials: [...(form.officials || []), newOfficial] });
+              }}
+              className="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm"
+            >
+              + Tambah Pengurus
+            </button>
+          </div>
+          <div className="space-y-4">
+            {form.officials?.map((official, idx) => (
+              <div key={idx} className="p-4 border border-gray-200 rounded-2xl bg-gray-50/50 space-y-3 relative">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newOfficials = form.officials.filter((_, i) => i !== idx);
+                    setForm({ ...form, officials: newOfficials });
+                  }}
+                  className="absolute top-4 right-4 text-red-500 hover:text-red-700 text-sm font-bold"
+                >
+                  Hapus
+                </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mr-8">
+                  <div>
+                    <label className="block text-[10px] font-bold text-dark mb-1 uppercase">Nama</label>
+                    <input
+                      type="text"
+                      value={official.name}
+                      onChange={(e) => {
+                        const newOffs = [...form.officials];
+                        newOffs[idx].name = e.target.value;
+                        setForm({ ...form, officials: newOffs });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs font-medium focus:border-primary focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-dark mb-1 uppercase">Jabatan</label>
+                    <input
+                      type="text"
+                      value={official.role}
+                      onChange={(e) => {
+                        const newOffs = [...form.officials];
+                        newOffs[idx].role = e.target.value;
+                        setForm({ ...form, officials: newOffs });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs font-medium focus:border-primary focus:outline-none"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-dark mb-1 uppercase">Foto Profil</label>
+                  <div className="flex flex-col sm:flex-row gap-3 items-center">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          try {
+                            const { uploadImageFile } = await import("@/lib/upload");
+                            const url = await uploadImageFile(file);
+                            const newOffs = [...form.officials];
+                            newOffs[idx].image = url;
+                            setForm({ ...form, officials: newOffs });
+                          } catch (err: unknown) {
+                            console.error(err);
+                            alert("Gagal mengunggah foto pengurus");
+                          }
+                        }
+                      }}
+                      className="text-[10px] text-medium file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:font-extrabold file:bg-tint file:text-primary cursor-pointer w-full sm:w-auto"
+                    />
+                    <input
+                      type="text"
+                      value={official.image}
+                      onChange={(e) => {
+                        const newOffs = [...form.officials];
+                        newOffs[idx].image = e.target.value;
+                        setForm({ ...form, officials: newOffs });
+                      }}
+                      className="w-full px-3 py-1.5 rounded-xl border border-gray-200 text-xs font-medium focus:border-primary focus:outline-none"
+                    />
+                  </div>
+                  {official.image && (
+                    <div className="mt-2 w-16 h-16 rounded-full overflow-hidden border border-gray-200 shadow-sm bg-white">
+                      <img src={official.image} alt="Preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+            {(!form.officials || form.officials.length === 0) && (
+              <p className="text-xs text-medium italic text-center py-4">Belum ada data pengurus. Klik tombol Tambah Pengurus di atas.</p>
+            )}
           </div>
         </div>
 
