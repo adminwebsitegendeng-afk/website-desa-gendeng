@@ -113,6 +113,11 @@ export async function getWisataList(): Promise<WisataRecord[]> {
   if (error) return [];
   return data as WisataRecord[];
 }
+export async function getWisataBySlug(slug: string): Promise<WisataRecord | undefined> {
+  const { data, error } = await supabase.from("wisata_budaya").select("*").eq("slug", slug).single();
+  if (error) return undefined;
+  return data as WisataRecord;
+}
 export async function createWisata(data: Omit<WisataRecord, "id">): Promise<WisataRecord> {
   const id = `ws-${Date.now()}`;
   const { data: created, error } = await supabase.from("wisata_budaya").insert({ id, ...data }).select().single();
@@ -135,6 +140,11 @@ export async function getPotensiList(): Promise<PotensiRecord[]> {
   const { data, error } = await supabase.from("potensi_ekonomi").select("*");
   if (error) return [];
   return data as PotensiRecord[];
+}
+export async function getPotensiBySlug(slug: string): Promise<PotensiRecord | undefined> {
+  const { data, error } = await supabase.from("potensi_ekonomi").select("*").eq("slug", slug).single();
+  if (error) return undefined;
+  return data as PotensiRecord;
 }
 export async function createPotensi(data: Omit<PotensiRecord, "id">): Promise<PotensiRecord> {
   const id = `p-${Date.now()}`;

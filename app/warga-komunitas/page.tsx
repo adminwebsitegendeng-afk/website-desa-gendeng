@@ -163,7 +163,7 @@ export default function WargaKomunitasPage() {
                         <h3 className="font-extrabold text-dark text-base sm:text-lg leading-snug mb-2 line-clamp-2">
                           {act.title || "Kegiatan Warga"}
                         </h3>
-                        <p className="text-xs text-medium leading-relaxed mb-4 line-clamp-3">
+                        <p className="text-xs text-medium leading-relaxed mb-4 line-clamp-4">
                           {act.shortDesc || act.description || "Agenda kegiatan warga Desa Gendeng."}
                         </p>
                       </div>

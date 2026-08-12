@@ -38,22 +38,22 @@ export default function Home() {
   }, []);
 
   const defaultHighlights = [
-    { title: tr(t.home.hl1Title, lang), desc: tr(t.home.hl1Desc, lang), image: "/images/hero_village.png", icon: "🌾" },
-    { title: tr(t.home.hl2Title, lang), desc: tr(t.home.hl2Desc, lang), image: "/images/potensi_crafts.png", icon: "🛍️" },
-    { title: tr(t.home.hl3Title, lang), desc: tr(t.home.hl3Desc, lang), image: "/images/community_event.png", icon: "🎭" },
-    { title: tr(t.home.hl4Title, lang), desc: tr(t.home.hl4Desc, lang), image: "/images/wisata_waterfall.png", icon: "⛰️" },
+    { title: tr(t.home.hl1Title, lang), desc: tr(t.home.hl1Desc, lang), image: "/images/hero_village.png", icon: "🌾", href: "" },
+    { title: tr(t.home.hl2Title, lang), desc: tr(t.home.hl2Desc, lang), image: "/images/potensi_crafts.png", icon: "🛍️", href: "" },
+    { title: tr(t.home.hl3Title, lang), desc: tr(t.home.hl3Desc, lang), image: "/images/community_event.png", icon: "🎭", href: "" },
+    { title: tr(t.home.hl4Title, lang), desc: tr(t.home.hl4Desc, lang), image: "/images/wisata_waterfall.png", icon: "⛰️", href: "" },
   ];
 
   const highlights = homepage?.highlights?.length ? homepage.highlights.map(hl => {
     if (hl.type === "warga") {
       const act = activities.find(a => a.id === hl.id);
-      if (act) return { title: act.title, desc: act.shortDesc || act.description, image: act.coverImage, icon: hl.icon };
+      if (act) return { title: act.title, desc: act.shortDesc || act.description, image: act.coverImage, icon: hl.icon, href: `/warga-komunitas/${act.slug}` };
     } else if (hl.type === "wisata") {
       const ws = wisata.find(a => a.id === hl.id);
-      if (ws) return { title: ws.title, desc: ws.description, image: ws.coverImage, icon: hl.icon };
+      if (ws) return { title: ws.title, desc: ws.description, image: ws.coverImage, icon: hl.icon, href: `/wisata-budaya/${ws.slug}` };
     } else if (hl.type === "potensi") {
       const pt = potensi.find(a => a.id === hl.id);
-      if (pt) return { title: pt.title, desc: pt.description, image: pt.coverImage, icon: hl.icon };
+      if (pt) return { title: pt.title, desc: pt.description, image: pt.coverImage, icon: hl.icon, href: `/potensi-ekonomi/${pt.slug}` };
     }
     
     // Fallback if custom or data not found
@@ -61,7 +61,8 @@ export default function Home() {
       title: hl.customTitle || "Highlight",
       desc: hl.customDesc || "-",
       image: hl.customImage || "/images/hero_village.png",
-      icon: hl.icon || "✨"
+      icon: hl.icon || "✨",
+      href: ""
     };
   }) : defaultHighlights;
 
@@ -193,9 +194,14 @@ export default function Home() {
                   <h3 className="font-extrabold text-dark text-base sm:text-lg leading-tight">
                     {hl.title}
                   </h3>
-                  <p className="text-medium text-xs leading-relaxed mt-2 flex-grow">
+                  <p className="text-medium text-xs leading-relaxed mt-2 mb-4 line-clamp-4 flex-grow">
                     {hl.desc}
                   </p>
+                  {hl.href && (
+                    <Link href={hl.href} className="inline-block text-[11px] font-extrabold uppercase tracking-wider text-primary hover:text-primary-hover active-press mt-auto">
+                      Lihat Selengkapnya &rarr;
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

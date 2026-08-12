@@ -27,6 +27,7 @@ export default function WisataBudaya() {
     desc: item.description,
     loc: item.location,
     image: item.coverImage,
+    slug: item.slug,
   }));
 
   const calendarEvents = [
@@ -119,12 +120,20 @@ export default function WisataBudaya() {
                     <h3 className="font-extrabold text-dark text-base leading-tight mb-2">
                       {dest.title}
                     </h3>
-                    <p className="text-xs text-medium leading-relaxed mb-4">
+                    <p className="text-xs text-medium leading-relaxed mb-4 line-clamp-4">
                       {dest.desc}
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-primary font-extrabold pt-3 border-t border-gray-100">
-                    <span>📍</span> {dest.loc}
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <span className="flex items-center gap-1.5 text-xs text-primary font-extrabold truncate max-w-[140px]">
+                      📍 {dest.loc}
+                    </span>
+                    <Link
+                      href={`/wisata-budaya/${dest.slug}`}
+                      className="inline-flex items-center gap-1 text-[11px] font-extrabold text-primary hover:text-primary-hover active-press uppercase tracking-wider"
+                    >
+                      Baca &rarr;
+                    </Link>
                   </div>
                 </div>
               </div>
