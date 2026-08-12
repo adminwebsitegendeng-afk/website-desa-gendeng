@@ -239,18 +239,37 @@ export default function AdminWisataBudayaPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Link Gambar / Foto</label>
-            <input
-              type="text"
-              required
-              value={form.coverImage}
-              onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
-              placeholder="Contoh: /images/wisata_waterfall.png atau URL Supabase"
-            />
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Foto Destinasi / Tradisi</label>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    try {
+                      const { uploadImageFile } = await import("@/lib/upload");
+                      const url = await uploadImageFile(file);
+                      setForm({ ...form, coverImage: url });
+                    } catch (err: unknown) {
+                      const msg = err instanceof Error ? err.message : "Gagal mengunggah gambar";
+                      alert(msg);
+                    }
+                  }
+                }}
+                className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={form.coverImage}
+                onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+                placeholder="Atau masukkan URL / path gambar..."
+              />
+            </div>
             {form.coverImage && (
-              <div className="mt-2 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200">
-                <img src={form.coverImage} alt="Preview" className="object-cover w-full h-full" />
+              <div className="mt-2 relative w-32 h-20 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img src={form.coverImage} alt="Preview" className="w-full h-full object-cover" />
               </div>
             )}
           </div>
