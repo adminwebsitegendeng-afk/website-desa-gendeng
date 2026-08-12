@@ -24,6 +24,7 @@ export default function AdminPotensiEkonomiPage() {
     ownerOrLoc: "Gendeng, Yogyakarta",
     description: "",
     coverImage: "/images/potensi_crafts.png",
+    gallery: [] as string[],
     status: "published" as "published" | "draft",
   });
 
@@ -45,6 +46,7 @@ export default function AdminPotensiEkonomiPage() {
       ownerOrLoc: "Gendeng, Yogyakarta",
       description: "",
       coverImage: "/images/potensi_crafts.png",
+      gallery: [],
       status: "published",
     });
     setIsModalOpen(true);
@@ -58,6 +60,7 @@ export default function AdminPotensiEkonomiPage() {
       ownerOrLoc: item.ownerOrLoc,
       description: item.description,
       coverImage: item.coverImage,
+      gallery: item.gallery || (item.coverImage ? [item.coverImage] : []),
       status: item.status,
     });
     setIsModalOpen(true);
@@ -66,10 +69,13 @@ export default function AdminPotensiEkonomiPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const slug = form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const finalCover = form.gallery.length > 0 ? form.gallery[0] : form.coverImage;
+    const finalData = { ...form, coverImage: finalCover, slug };
+    
     if (editingItem) {
-      await updatePotensi(editingItem.id, { ...form, slug });
+      await updatePotensi(editingItem.id, finalData);
     } else {
-      await createPotensi({ ...form, slug });
+      await createPotensi(finalData);
     }
     setIsModalOpen(false);
     loadData();
@@ -232,37 +238,40 @@ export default function AdminPotensiEkonomiPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Foto Produk / UMKM</label>
-            <div className="flex flex-col sm:flex-row gap-3 items-center">
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Galeri Foto (Maks 4)</label>
+            <div className="flex flex-col gap-3">
               <input
                 type="file"
                 accept="image/*"
+                multiple
                 onChange={async (e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    try {
-                      const { uploadImageFile } = await import("@/lib/upload");
-                      const url = await uploadImageFile(file);
-                      setForm({ ...form, coverImage: url });
-                    } catch (err: unknown) {
-                      const msg = err instanceof Error ? err.message : "Gagal mengunggah gambar";
-                      alert(msg);
-                    }
+                  const files = Array.from(e.target.files || []);
+                  if (!files.length) return;
+                  try {
+                    const { uploadImageFile } = await import("@/lib/upload");
+                    const newUrls = await Promise.all(files.slice(0, 4 - form.gallery.length).map(f => uploadImageFile(f)));
+                    setForm({ ...form, gallery: [...form.gallery, ...newUrls].slice(0, 4) });
+                  } catch (err: unknown) {
+                    console.error(err);
+                    alert("Gagal mengunggah gambar");
                   }
                 }}
                 className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
-              />
-              <input
-                type="text"
-                value={form.coverImage}
-                onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
-                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
-                placeholder="Atau masukkan URL / path gambar..."
+                disabled={form.gallery.length >= 4}
               />
             </div>
-            {form.coverImage && (
-              <div className="mt-2 relative w-32 h-20 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-                <img src={form.coverImage} alt="Preview" className="w-full h-full object-cover" />
+            {form.gallery.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-3">
+                {form.gallery.map((url, idx) => (
+                  <div key={idx} className="relative w-24 h-16 rounded-xl overflow-hidden border border-gray-200 shadow-sm group">
+                    <img src={url} alt={`Preview ${idx+1}`} className="w-full h-full object-cover" />
+                    <button 
+                      type="button" 
+                      onClick={() => setForm({...form, gallery: form.gallery.filter((_, i) => i !== idx)})}
+                      className="absolute top-1 right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                    >×</button>
+                  </div>
+                ))}
               </div>
             )}
           </div>

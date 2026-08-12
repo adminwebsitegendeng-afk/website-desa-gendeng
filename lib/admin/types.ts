@@ -55,6 +55,7 @@ export interface PotensiItem {
   ownerOrLoc: string;
   description: string;
   coverImage: string;
+  gallery?: string[];
   status: ContentStatus;
 }
 

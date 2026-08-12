@@ -107,6 +107,31 @@ export default function PotensiEkonomiDetailPage() {
                   {item.description}
                 </p>
               </div>
+
+              {/* Photo Gallery Grid */}
+              {item.gallery && item.gallery.length > 0 && (
+                <div className="pt-6 border-t border-gray-100">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-dark tracking-tight mb-5 flex items-center gap-2">
+                    <span>🖼️</span>
+                    <span>Galeri Foto</span>
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                    {item.gallery.map((imgSrc, idx) => (
+                      <div
+                        key={idx}
+                        className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-ios border border-gray-200/60 hover-scale"
+                      >
+                        <Image
+                          src={imgSrc}
+                          alt={`${item.title} gallery ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right Sidebar Info Card */}
