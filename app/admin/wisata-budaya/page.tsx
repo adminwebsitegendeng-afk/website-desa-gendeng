@@ -238,6 +238,23 @@ export default function AdminWisataBudayaPage() {
             />
           </div>
 
+          <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Link Gambar / Foto</label>
+            <input
+              type="text"
+              required
+              value={form.coverImage}
+              onChange={(e) => setForm({ ...form, coverImage: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+              placeholder="Contoh: /images/wisata_waterfall.png atau URL Supabase"
+            />
+            {form.coverImage && (
+              <div className="mt-2 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200">
+                <img src={form.coverImage} alt="Preview" className="object-cover w-full h-full" />
+              </div>
+            )}
+          </div>
+
           <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
             <button
               type="button"

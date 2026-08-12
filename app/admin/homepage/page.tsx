@@ -11,6 +11,7 @@ export default function AdminHomepagePage() {
   const [potensi, setPotensi] = useState<PotensiItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     async function loadData() {
@@ -32,9 +33,20 @@ export default function AdminHomepagePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form) return;
-    await updateHomepageData(form);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    setErrorMsg("");
+    setSaved(false);
+    
+    try {
+      await updateHomepageData(form);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err: any) {
+      if (err.message?.includes("column \"highlights\"")) {
+        setErrorMsg("Gagal menyimpan: Kolom 'highlights' belum ada di database Supabase Anda. Mohon jalankan SQL: ALTER TABLE homepage_settings ADD COLUMN highlights JSONB DEFAULT '[]'; di SQL Editor Supabase Anda.");
+      } else {
+        setErrorMsg("Gagal menyimpan: " + (err.message || "Terjadi kesalahan jaringan"));
+      }
+    }
   };
 
   if (loading || !form) {
@@ -49,6 +61,20 @@ export default function AdminHomepagePage() {
           <p className="text-xs text-medium">Kelola teks hero utama, tagline, gambar latar, dan highlight.</p>
         </div>
       </div>
+
+      {errorMsg && (
+        <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-xs font-extrabold rounded-2xl flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <span>❌</span>
+            <span>{errorMsg}</span>
+          </div>
+          {errorMsg.includes("ALTER TABLE") && (
+            <div className="bg-white/80 p-3 rounded-lg text-[10px] font-mono break-all border border-red-100 select-all">
+              ALTER TABLE homepage_settings ADD COLUMN highlights JSONB DEFAULT '[]';
+            </div>
+          )}
+        </div>
+      )}
 
       {saved && (
         <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold rounded-2xl flex items-center gap-2">
