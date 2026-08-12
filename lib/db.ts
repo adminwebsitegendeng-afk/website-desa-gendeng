@@ -224,7 +224,7 @@ function getItem<T>(key: string, fallback: T): T {
   try {
     const raw = localStorage.getItem(`gendeng_db_${key}`) || localStorage.getItem(`gendeng_cms_${key}`);
     return raw ? JSON.parse(raw) : fallback;
-  } catch (e) {
+  } catch {
     return fallback;
   }
 }
@@ -237,10 +237,11 @@ function setItem<T>(key: string, value: T): void {
     localStorage.setItem(`gendeng_cms_${key}`, jsonStr);
     window.dispatchEvent(new Event("gendeng_db_update"));
     window.dispatchEvent(new Event("gendeng_cms_update"));
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("Storage save failed:", e);
     // Rethrow to allow the UI to show an alert (e.g. QuotaExceededError)
-    throw new Error(e.name === "QuotaExceededError" ? "Kapasitas memori browser penuh! Silakan hapus data lama atau gunakan gambar yang lebih kecil." : "Gagal menyimpan data ke database lokal.");
+    const isQuotaError = e instanceof Error && e.name === "QuotaExceededError";
+    throw new Error(isQuotaError ? "Kapasitas memori browser penuh! Silakan hapus data lama atau gunakan gambar yang lebih kecil." : "Gagal menyimpan data ke database lokal.");
   }
 }
 

@@ -91,8 +91,9 @@ export default function AdminWargaKomunitasPage() {
       }
       setIsModalOpen(false);
       loadData();
-    } catch (err: any) {
-      alert("Error saat menyimpan: " + err.message);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      alert("Error saat menyimpan: " + msg);
       console.error(err);
     }
   };
@@ -326,8 +327,9 @@ export default function AdminWargaKomunitasPage() {
                       const { uploadImageFile } = await import("@/lib/upload");
                       const url = await uploadImageFile(file);
                       setForm({ ...form, coverImage: url });
-                    } catch (err: any) {
-                      alert(err.message || "Gagal mengunggah gambar");
+                    } catch (err: unknown) {
+                      const msg = err instanceof Error ? err.message : "Gagal mengunggah gambar";
+                      alert(msg);
                     }
                   }
                 }}

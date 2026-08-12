@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { demographics } from "@/lib/mockData";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { t, tr } from "@/lib/i18n/translations";
 
 type StatTab = "pekerjaan" | "pendidikan" | "umur" | "gender";
 

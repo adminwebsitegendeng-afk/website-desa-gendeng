@@ -181,8 +181,9 @@ export default function AdminGaleriPage() {
                       const { uploadImageFile } = await import("@/lib/upload");
                       const url = await uploadImageFile(file);
                       setForm({ ...form, imageUrl: url });
-                    } catch (err: any) {
-                      alert(err.message || "Gagal mengunggah foto");
+                    } catch (err: unknown) {
+                      const msg = err instanceof Error ? err.message : "Gagal mengunggah foto";
+                      alert(msg);
                     }
                   }
                 }}
