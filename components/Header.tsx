@@ -68,7 +68,7 @@ export default function Header() {
           </nav>
 
           {/* Lang switcher */}
-          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-2 flex-shrink-0 notranslate" translate="no">
             <div className="flex bg-gray-100/90 rounded-full p-1 border border-gray-200/60 shadow-inner">
               <button
                 onClick={() => handleLangChange("id")}
@@ -130,7 +130,7 @@ export default function Header() {
                 </Link>
               );
             })}
-            <div className="pt-3 mt-2 border-t border-gray-100 flex gap-2">
+            <div className="pt-3 mt-2 border-t border-gray-100 flex gap-2 notranslate" translate="no">
               <button
                 onClick={() => { handleLangChange("id"); setIsOpen(false); }}
                 className={`flex-1 py-2.5 rounded-2xl text-xs font-extrabold active-press transition-all ${lang === "id" ? "bg-[#14532d] text-white shadow-sm" : "bg-gray-100 text-[#6b7280]"
