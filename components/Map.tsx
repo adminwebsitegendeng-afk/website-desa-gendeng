@@ -26,14 +26,14 @@ function MapEvents({ onClick }: { onClick: (lat: number, lng: number) => void })
   return null;
 }
 
-// Approximate boundary coordinates for Kampung Gendeng Baciro
+// Exact boundary coordinates for Kampung Gendeng Baciro based on map
 const gendengBoundary: [number, number][] = [
-  [-7.7912, 110.3798], // NW (Jl. Mojo / Jl. Tri Dharma)
-  [-7.7905, 110.3876], // NE (Jl. Tri Dharma / Jl. Timhoho)
-  [-7.7963, 110.3870], // SE (Jl. Timhoho / Jl. Melati Wetan)
-  [-7.7953, 110.3815], // SW indent (Jl. Melati Wetan)
-  [-7.7940, 110.3808], // SW mid indent
-  [-7.7942, 110.3790], // SW corner (Jl. Mojo)
+  [-7.7885, 110.3855], // NW (Jl. Mojo / Jl. Tri Dharma)
+  [-7.7885, 110.3910], // NE (Jl. Tri Dharma / Jl. Timoho)
+  [-7.7945, 110.3910], // SE (Jl. Timoho / Jl. Melati Wetan)
+  [-7.7945, 110.3875], // SW corner 1 (Melati Wetan)
+  [-7.7920, 110.3875], // SW indent inner
+  [-7.7920, 110.3855], // SW indent outer (Jl. Mojo)
 ];
 
 interface MapProps {
@@ -44,7 +44,7 @@ interface MapProps {
   onMapClick?: (lat: number, lng: number) => void;
 }
 
-export default function Map({ locations, center = [-7.7942, 110.3845], zoom = 16, className = "w-full h-full min-h-[400px] z-0", onMapClick }: MapProps) {
+export default function Map({ locations, center = [-7.7915, 110.3882], zoom = 16, className = "w-full h-full min-h-[400px] z-0", onMapClick }: MapProps) {
   return (
     <MapContainer
       center={center}
