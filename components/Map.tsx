@@ -1,6 +1,6 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents, Polygon } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -26,16 +26,6 @@ function MapEvents({ onClick }: { onClick: (lat: number, lng: number) => void })
   return null;
 }
 
-// Exact boundary coordinates for Kampung Gendeng Baciro based on map
-const gendengBoundary: [number, number][] = [
-  [-7.7885, 110.3855], // NW (Jl. Mojo / Jl. Tri Dharma)
-  [-7.7885, 110.3910], // NE (Jl. Tri Dharma / Jl. Timoho)
-  [-7.7945, 110.3910], // SE (Jl. Timoho / Jl. Melati Wetan)
-  [-7.7945, 110.3875], // SW corner 1 (Melati Wetan)
-  [-7.7920, 110.3875], // SW indent inner
-  [-7.7920, 110.3855], // SW indent outer (Jl. Mojo)
-];
-
 interface MapProps {
   locations: MapLocation[];
   center?: [number, number];
@@ -57,10 +47,6 @@ export default function Map({ locations, center = [-7.7915, 110.3882], zoom = 16
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Polygon 
-        positions={gendengBoundary} 
-        pathOptions={{ color: '#10b981', fillColor: '#10b981', fillOpacity: 0.1, weight: 3 }} 
       />
       {locations.map((loc) => (
         <Marker key={loc.id} position={[loc.lat, loc.lng]}>
