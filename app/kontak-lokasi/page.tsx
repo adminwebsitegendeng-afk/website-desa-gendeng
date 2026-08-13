@@ -208,6 +208,19 @@ export default function KontakLokasi() {
       {/* Main Grid */}
       <section className="py-14 sm:py-20 bg-white flex-grow">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          
+          {/* Interactive WebGIS Map Wrapper (Top Full Width 16:9) */}
+          <div className="mb-12 sm:mb-16 bg-white border border-gray-200/70 rounded-3xl p-3 sm:p-4 shadow-ios w-full">
+            <div className="flex items-center justify-between mb-3 px-2">
+              <h2 className="text-lg sm:text-xl font-extrabold text-dark flex items-center gap-2">
+                <span>📍</span> {lang === "en" ? "Interactive Digital Map" : "Peta Digital Interaktif"}
+              </h2>
+            </div>
+            <div className="w-full aspect-video min-h-[300px] bg-gray-50 rounded-2xl relative overflow-hidden border border-gray-100 shadow-inner">
+              <MapViewer locations={mapLocations} />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
             
             {/* Left side: Information and Map */}
@@ -234,16 +247,6 @@ export default function KontakLokasi() {
                     <span className="text-base sm:text-lg">⏱️</span>
                     <span>{tr(t.kontak.hours, lang)}</span>
                   </p>
-                </div>
-              </div>
-
-              {/* Interactive WebGIS Map Wrapper */}
-              <div className="bg-white border border-gray-200/70 rounded-3xl p-3 sm:p-4 shadow-ios flex flex-col h-[400px]">
-                <span className="text-xs font-extrabold text-primary uppercase tracking-wider mb-2 px-1">
-                  📍 {lang === "en" ? "Location Map" : "Peta Digital Desa"}
-                </span>
-                <div className="w-full h-full bg-gray-50 rounded-2xl relative overflow-hidden border border-gray-100">
-                  <MapViewer locations={mapLocations} />
                 </div>
               </div>
             </div>
