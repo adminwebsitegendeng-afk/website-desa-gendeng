@@ -16,6 +16,7 @@ export default function AdminSidebar({ isOpen, onClose }: SidebarProps) {
 
   const menuItems = [
     { label: "Dashboard", href: "/admin/dashboard", icon: "📊" },
+    { label: "Peta Desa", href: "/admin/peta-desa", icon: "📍" },
     { label: "Profil Desa", href: "/admin/profil", icon: "🏛️" },
     { label: "Warga & Komunitas", href: "/admin/warga-komunitas", icon: "🤝" },
     { label: "Wisata & Budaya", href: "/admin/wisata-budaya", icon: "🎭" },

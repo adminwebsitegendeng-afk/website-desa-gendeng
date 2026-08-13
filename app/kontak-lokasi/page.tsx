@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
+import MapViewer from "@/components/MapViewer";
+import { getMapLocations } from "@/lib/admin/services/adminService";
+import { MapLocation } from "@/lib/admin/types";
 
 // Sub-component that accesses search parameters
 function ContactFormContent() {
@@ -165,6 +168,15 @@ function ContactFormContent() {
 
 export default function KontakLokasi() {
   const { lang } = useLanguage();
+  const [mapLocations, setMapLocations] = useState<MapLocation[]>([]);
+
+  useEffect(() => {
+    async function loadMap() {
+      const data = await getMapLocations();
+      setMapLocations(data);
+    }
+    loadMap();
+  }, []);
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
@@ -225,28 +237,13 @@ export default function KontakLokasi() {
                 </div>
               </div>
 
-              {/* Styled Mock Map Wrapper */}
-              <div className="bg-white border border-gray-200/70 rounded-3xl p-5 shadow-ios flex flex-col">
-                <span className="text-xs font-extrabold text-primary uppercase tracking-wider mb-3">
-                  📍 {lang === "en" ? "Location Map" : "Peta Lokasi Kantor Balai Warga"}
+              {/* Interactive WebGIS Map Wrapper */}
+              <div className="bg-white border border-gray-200/70 rounded-3xl p-3 sm:p-4 shadow-ios flex flex-col h-[400px]">
+                <span className="text-xs font-extrabold text-primary uppercase tracking-wider mb-2 px-1">
+                  📍 {lang === "en" ? "Location Map" : "Peta Digital Desa"}
                 </span>
-                <div className="w-full h-64 sm:h-72 bg-gray-50 rounded-2xl relative overflow-hidden flex items-center justify-center border border-gray-100">
-                  <div className="absolute inset-0 bg-gray-50 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:16px_16px] opacity-80" />
-                  
-                  <div className="absolute w-full h-4 bg-gray-200/90 top-1/2 left-0 -translate-y-1/2 rotate-12" />
-                  <div className="absolute w-6 h-full bg-gray-200/90 top-0 left-1/3 -translate-x-1/2 -rotate-12" />
-                  
-                  <div className="absolute w-32 h-20 bg-emerald-100/50 rounded-full blur-sm top-4 left-6" />
-                  <div className="absolute w-40 h-24 bg-primary/10 rounded-full blur-sm bottom-6 right-8" />
-                  
-                  <div className="relative z-10 flex flex-col items-center group cursor-pointer animate-bounce">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-lg shadow-lg border-2 border-white">
-                      📍
-                    </div>
-                    <span className="bg-primary-dark text-white text-[10px] font-bold px-2.5 py-1 rounded-md mt-2 shadow-md">
-                      Desa Gendeng
-                    </span>
-                  </div>
+                <div className="w-full h-full bg-gray-50 rounded-2xl relative overflow-hidden border border-gray-100">
+                  <MapViewer locations={mapLocations} />
                 </div>
               </div>
             </div>

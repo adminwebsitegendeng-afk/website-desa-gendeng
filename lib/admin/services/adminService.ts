@@ -218,3 +218,32 @@ export async function updateHomepageData(data: Partial<HomepageRecord>): Promise
   if (error) throw error;
   return updated as HomepageRecord;
 }
+
+// ─── MAP LOCATIONS ───
+import { MapLocation } from "../types";
+
+export async function getMapLocations(): Promise<MapLocation[]> {
+  try {
+    const { data, error } = await supabase.from("map_locations").select("*").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    console.error("Error fetching map locations:", error);
+    return [];
+  }
+}
+
+export async function addMapLocation(location: Omit<MapLocation, "id" | "created_at">): Promise<void> {
+  const { error } = await supabase.from("map_locations").insert([location]);
+  if (error) throw error;
+}
+
+export async function updateMapLocation(id: string, location: Partial<MapLocation>): Promise<void> {
+  const { error } = await supabase.from("map_locations").update(location).eq("id", id);
+  if (error) throw error;
+}
+
+export async function deleteMapLocation(id: string): Promise<void> {
+  const { error } = await supabase.from("map_locations").delete().eq("id", id);
+  if (error) throw error;
+}

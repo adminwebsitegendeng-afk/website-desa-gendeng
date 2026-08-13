@@ -22,6 +22,16 @@ export interface ProfilData {
   officials: { name: string; role: string; image: string }[];
 }
 
+export type MapLocation = {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  category: string;
+  description: string;
+  created_at?: string;
+};
+
 export interface WargaItem {
   id: string;
   slug: string;
