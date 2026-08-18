@@ -165,18 +165,13 @@ export default function ProfilDesa() {
             </div>
 
             {/* Misi Card */}
-            <div className="md:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/70 shadow-ios">
-              <span className="text-primary font-extrabold text-xs uppercase tracking-wider">{tr(t.profil.misiLabel, lang)}</span>
-              <ul className="space-y-3 sm:space-y-4 mt-4 sm:mt-6">
+            <div className="md:col-span-7 bg-primary text-white rounded-3xl p-6 sm:p-8 flex flex-col justify-center shadow-ios-lg">
+              <span className="text-accent font-extrabold text-xs uppercase tracking-wider">{tr(t.profil.misiLabel, lang)}</span>
+              <div className="text-base sm:text-xl font-extrabold mt-3 sm:mt-4 leading-relaxed italic text-white/95 space-y-4">
                 {visionMission.missions.map((mission, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-tint flex-shrink-0 flex items-center justify-center text-primary font-extrabold text-xs mt-0.5 shadow-sm">
-                      {idx + 1}
-                    </span>
-                    <span className="text-medium text-xs sm:text-sm leading-relaxed">{mission}</span>
-                  </li>
+                  <p key={idx}>&ldquo;{mission}&rdquo;</p>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
