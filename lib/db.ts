@@ -63,6 +63,7 @@ export interface ProfilRecord {
   historyText: string;
   visionText: string;
   missionList: string[];
+  missionText: string;
   contactAddress: string;
   contactPhone: string;
   contactEmail: string;
@@ -75,6 +76,10 @@ export interface HomepageRecord {
   heroDesc: string;
   heroImage: string;
   heroCtaText: string;
+  heroImageProfil?: string;
+  heroImagePotensi?: string;
+  heroImageWisata?: string;
+  heroImageWarga?: string;
   highlights?: unknown[]; // Allow JSON array
 }
 
@@ -207,6 +212,7 @@ const initialProfil: ProfilRecord = {
     "Mendorong pertumbuhan UMKM kreatif berbahan serat alam, bambu, dan potensi lokal lainnya.",
     "Melestarikan adat-istiadat, kesenian lokal, serta situs-situs budaya bersejarah di wilayah desa.",
   ],
+  missionText: "1. Meningkatkan kualitas pelayanan publik berbasis digital yang cepat, ramah, dan transparan.\n2. Mengembangkan sektor pertanian organik dan integrasi pertanian terpadu guna memperkuat ketahanan pangan warga.\n3. Mendorong pertumbuhan UMKM kreatif berbahan serat alam, bambu, dan potensi lokal lainnya.\n4. Melestarikan adat-istiadat, kesenian lokal, serta situs-situs budaya bersejarah di wilayah desa.",
   contactAddress: "Balai Kampung Gendeng, RT 01 RW 05, Baciro, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55225",
   contactPhone: "+62 812-3456-7890",
   contactEmail: "halo@kampunggendeng.id",
@@ -218,6 +224,10 @@ const initialHomepage: HomepageRecord = {
   heroTagline: "Mengenalkan Desa, Memberdayakan Potensi, Mendunia!",
   heroDesc: "Desa Gendeng adalah kampung yang maju, mandiri, berbudaya dan terbuka untuk dunia.",
   heroImage: "/images/community_event.png",
+  heroImageProfil: "/images/hero_gendeng.png",
+  heroImagePotensi: "/images/community_event.png",
+  heroImageWisata: "/images/community_event.png",
+  heroImageWarga: "/images/community_event.png",
   heroCtaText: "Jelajahi Desa",
 };
 

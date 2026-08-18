@@ -6,19 +6,21 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
 import { CommunityCategory } from "@/lib/communityData";
-import { getWargaList, subscribeDBChange } from "@/lib/admin/services/adminService";
-import { WargaItem } from "@/lib/admin/types";
+import { getWargaList, getHomepageData, subscribeDBChange } from "@/lib/admin/services/adminService";
+import { WargaItem, HomepageData } from "@/lib/admin/types";
 
 export default function WargaKomunitasPage() {
   const { lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CommunityCategory>("all");
   const [activities, setActivities] = useState<WargaItem[]>([]);
+  const [homepage, setHomepage] = useState<HomepageData | null>(null);
 
   const loadData = async () => {
-    const data = await getWargaList();
+    const [data, hp] = await Promise.all([getWargaList(), getHomepageData()]);
     // Filter only published items
     const published = data.filter((item) => item.status === "published");
     setActivities(published);
+    setHomepage(hp as unknown as HomepageData);
   };
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function WargaKomunitasPage() {
       <section className="relative w-full min-h-[300px] sm:min-h-[360px] flex items-center justify-start text-white overflow-hidden bg-primary-dark py-12 sm:py-16">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/community_event.png"
+            src={homepage?.heroImageWarga || "/images/community_event.png"}
             alt="Warga & Komunitas Desa Gendeng"
             fill
             priority

@@ -66,6 +66,7 @@ export async function getProfilData(): Promise<ProfilRecord> {
       historyText: "-",
       visionText: "-",
       missionList: [],
+      missionText: "-",
       contactAddress: "-",
       contactPhone: "-",
       contactEmail: "-",
@@ -191,6 +192,10 @@ export async function getHomepageData(): Promise<HomepageRecord> {
       heroTagline: "Website Resmi Desa",
       heroDesc: "Memajukan desa dan masyarakat.",
       heroImage: "/images/hero_gendeng.png",
+      heroImageProfil: "/images/hero_gendeng.png",
+      heroImagePotensi: "/images/community_event.png",
+      heroImageWisata: "/images/community_event.png",
+      heroImageWarga: "/images/community_event.png",
       heroCtaText: "Jelajahi",
       highlights: [
         { type: "custom", id: "", icon: "🌾", customTitle: "Pertanian", customDesc: "Lahan subur dan hasil pertanian berkualitas", customImage: "/images/hero_gendeng.png" },
@@ -210,6 +215,11 @@ export async function getHomepageData(): Promise<HomepageRecord> {
       { type: "custom", id: "", icon: "⛰️", customTitle: "Pariwisata Alam", customDesc: "Keindahan alam yang menjadi daya tarik", customImage: "/images/wisata_waterfall.png" },
     ];
   }
+  
+  if (!data.heroImageProfil) data.heroImageProfil = "/images/hero_gendeng.png";
+  if (!data.heroImagePotensi) data.heroImagePotensi = "/images/community_event.png";
+  if (!data.heroImageWisata) data.heroImageWisata = "/images/community_event.png";
+  if (!data.heroImageWarga) data.heroImageWarga = "/images/community_event.png";
   
   return data as HomepageRecord;
 }

@@ -100,7 +100,7 @@ export default function AdminHomepagePage() {
           </div>
 
           <div>
-            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Tagline Utama Hero</label>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Semboyan Desa / Tagline Hero</label>
             <input
               type="text"
               value={form.heroTagline}
@@ -155,6 +155,61 @@ export default function AdminHomepagePage() {
                 <img src={form.heroImage} alt="Hero Preview" className="w-full h-full object-cover" />
               </div>
             )}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl border border-gray-200/70 p-6 shadow-ios space-y-4">
+          <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider">Gambar Latar Halaman Lainnya (Setiap Section)</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-extrabold uppercase text-dark mb-1">Hero Profil Desa</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={form.heroImageProfil || ""}
+                  onChange={(e) => setForm({ ...form, heroImageProfil: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+                  placeholder="URL Gambar..."
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-extrabold uppercase text-dark mb-1">Hero Potensi Ekonomi</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={form.heroImagePotensi || ""}
+                  onChange={(e) => setForm({ ...form, heroImagePotensi: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+                  placeholder="URL Gambar..."
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-extrabold uppercase text-dark mb-1">Hero Wisata & Budaya</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={form.heroImageWisata || ""}
+                  onChange={(e) => setForm({ ...form, heroImageWisata: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+                  placeholder="URL Gambar..."
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-extrabold uppercase text-dark mb-1">Hero Warga & Komunitas</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={form.heroImageWarga || ""}
+                  onChange={(e) => setForm({ ...form, heroImageWarga: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+                  placeholder="URL Gambar..."
+                />
+              </div>
+            </div>
           </div>
         </div>
 

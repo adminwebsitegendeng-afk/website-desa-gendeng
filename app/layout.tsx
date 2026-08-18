@@ -14,7 +14,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Website Resmi Kampung Gendeng - Portal Informasi & Pelayanan Publik",
   description:
-    "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Potensi ekonomi, budaya lokal, statistik kependudukan, dan pelayanan warga.",
+    "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Potensi ekonomi, budaya lokal, dan pelayanan warga.",
 };
 
 export default function RootLayout({

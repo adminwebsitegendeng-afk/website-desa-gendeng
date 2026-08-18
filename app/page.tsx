@@ -103,13 +103,6 @@ export default function Home() {
               >
                 <span>{tr(t.home.heroExplore, lang)}</span>
               </Link>
-              <button
-                onClick={() => alert("Simulasi memutar video profil desa...")}
-                className="border border-white/40 bg-white/10 hover:bg-white/20 active-press backdrop-blur-md text-white px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 transition-all duration-200"
-              >
-                <span>▶</span>
-                <span>{tr(t.home.heroVideo, lang)}</span>
-              </button>
             </div>
           </div>
         </div>

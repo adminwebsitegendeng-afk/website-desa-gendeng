@@ -146,6 +146,16 @@ export default function AdminProfilPage() {
               className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
             />
           </div>
+          <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Misi Desa</label>
+            <textarea
+              rows={4}
+              value={form.missionText}
+              onChange={(e) => setForm({ ...form, missionText: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+              placeholder="Masukkan misi, pisahkan dengan baris baru (enter)..."
+            />
+          </div>
         </div>
 
         {/* Informas Kontak */}

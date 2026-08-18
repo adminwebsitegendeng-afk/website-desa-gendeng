@@ -5,17 +5,19 @@ import Image from "next/image";
 import { officials } from "@/lib/mockData";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
-import { getProfilData, subscribeDBChange } from "@/lib/admin/services/adminService";
-import { ProfilData } from "@/lib/admin/types";
+import { getProfilData, getHomepageData, subscribeDBChange } from "@/lib/admin/services/adminService";
+import { ProfilData, HomepageData } from "@/lib/admin/types";
 
 export default function ProfilDesa() {
   const { lang } = useLanguage();
   const [profil, setProfil] = useState<ProfilData | null>(null);
+  const [homepage, setHomepage] = useState<HomepageData | null>(null);
 
   useEffect(() => {
     async function loadData() {
-      const data = await getProfilData();
+      const [data, hp] = await Promise.all([getProfilData(), getHomepageData()]);
       setProfil(data);
+      setHomepage(hp as unknown as HomepageData);
     }
     loadData();
     const unsubscribe = subscribeDBChange(loadData);
@@ -26,7 +28,7 @@ export default function ProfilDesa() {
     vision: profil?.visionText || (lang === "en"
       ? "Realizing a Progressive, Independent, Prosperous Kampung Gendeng with Noble Cultural Character and Excellence in Integrated Agribusiness by 2030."
       : "Terwujudnya Desa Gendeng yang Maju, Mandiri, Sejahtera, Berkarakter Budaya Luhur, dan Unggul dalam Sektor Agribisnis Terpadu pada Tahun 2030."),
-    missions: profil?.missionList || (lang === "en"
+    missions: (profil?.missionText && profil.missionText.trim() !== "-") ? profil.missionText.split('\n').filter(Boolean) : (lang === "en"
       ? [
         "Improve digital-based public service quality that is fast, friendly, and transparent.",
         "Develop organic farming and integrated agriculture to strengthen community food security.",
@@ -75,7 +77,7 @@ export default function ProfilDesa() {
       <section className="relative bg-primary-dark text-white py-14 sm:py-20 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero_gendeng.png"
+            src={homepage?.heroImageProfil || "/images/hero_gendeng.png"}
             alt="Profil Desa"
             fill
             className="object-cover opacity-50"

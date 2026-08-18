@@ -16,6 +16,7 @@ export interface ProfilData {
   historyText: string;
   visionText: string;
   missionList: string[];
+  missionText: string;
   contactAddress: string;
   contactPhone: string;
   contactEmail: string;
@@ -94,5 +95,9 @@ export interface HomepageData {
   heroTagline: string;
   heroDesc: string;
   heroImage: string;
+  heroImageProfil?: string;
+  heroImagePotensi?: string;
+  heroImageWisata?: string;
+  heroImageWarga?: string;
   highlights: HighlightReference[];
 }

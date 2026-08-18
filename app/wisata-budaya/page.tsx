@@ -5,17 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
-import { getWisataList, subscribeDBChange } from "@/lib/admin/services/adminService";
-import { WisataItem } from "@/lib/admin/types";
+import { getWisataList, getHomepageData, subscribeDBChange } from "@/lib/admin/services/adminService";
+import { WisataItem, HomepageData } from "@/lib/admin/types";
 
 export default function WisataBudaya() {
   const { lang } = useLanguage();
   const [wisataList, setWisataList] = useState<WisataItem[]>([]);
+  const [homepage, setHomepage] = useState<HomepageData | null>(null);
 
   useEffect(() => {
     async function loadData() {
-      const data = await getWisataList();
+      const [data, hp] = await Promise.all([getWisataList(), getHomepageData()]);
       setWisataList(data.filter((item) => item.status === "published"));
+      setHomepage(hp as unknown as HomepageData);
     }
     loadData();
     const unsubscribe = subscribeDBChange(loadData);
@@ -42,7 +44,7 @@ export default function WisataBudaya() {
       <section className="relative w-full min-h-[300px] sm:min-h-[360px] flex items-center justify-start text-white overflow-hidden bg-primary-dark py-12 sm:py-16">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/community_event.png"
+            src={homepage?.heroImageWisata || "/images/community_event.png"}
             alt="Wisata & Budaya Desa Gendeng"
             fill
             priority
