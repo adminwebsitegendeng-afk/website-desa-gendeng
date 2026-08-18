@@ -12,9 +12,31 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Website Resmi Kampung Gendeng - Portal Informasi & Pelayanan Publik",
+  metadataBase: new URL("https://website-desa-gendeng.vercel.app"),
+  title: {
+    default: "Website Resmi Kampung Gendeng | Yogyakarta",
+    template: "%s | Kampung Gendeng",
+  },
   description:
-    "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Potensi ekonomi, budaya lokal, dan pelayanan warga.",
+    "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Temukan potensi ekonomi UMKM, budaya lokal, pariwisata, dan kegiatan warga kami.",
+  keywords: ["Kampung Gendeng", "Desa Gendeng", "Gondokusuman", "Yogyakarta", "UMKM Jogja", "Wisata Jogja", "Desa Wisata"],
+  authors: [{ name: "Pemerintah Kampung Gendeng" }],
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: "https://website-desa-gendeng.vercel.app",
+    siteName: "Kampung Gendeng",
+    title: "Website Resmi Kampung Gendeng | Yogyakarta",
+    description: "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Temukan potensi ekonomi UMKM, budaya lokal, pariwisata, dan kegiatan warga kami.",
+    images: [
+      {
+        url: "/images/hero_gendeng.png",
+        width: 1200,
+        height: 630,
+        alt: "Kampung Gendeng Yogyakarta",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
