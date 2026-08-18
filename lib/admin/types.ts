@@ -11,6 +11,7 @@ export interface ProfilData {
   greetingTitle: string;
   greetingName: string;
   greetingRole: string;
+  greetingHeadline: string;
   greetingMessage: string;
   greetingImage: string;
   historyText: string;

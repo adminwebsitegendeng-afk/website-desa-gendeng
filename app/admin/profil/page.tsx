@@ -71,6 +71,16 @@ export default function AdminProfilPage() {
             </div>
           </div>
           <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Judul Utama Sambutan</label>
+            <textarea
+              rows={2}
+              value={form.greetingHeadline}
+              onChange={(e) => setForm({ ...form, greetingHeadline: e.target.value })}
+              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
+              placeholder="Bersama Membangun Kampung Gendeng yang Maju, Mandiri, dan Mendunia"
+            />
+          </div>
+          <div>
             <label className="block text-xs font-extrabold uppercase text-dark mb-1">Foto Pimpinan</label>
             <div className="flex flex-col sm:flex-row gap-3 items-center">
               <input

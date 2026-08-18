@@ -58,6 +58,7 @@ export interface ProfilRecord {
   greetingTitle: string;
   greetingName: string;
   greetingRole: string;
+  greetingHeadline: string;
   greetingMessage: string;
   greetingImage: string;
   historyText: string;
@@ -202,6 +203,7 @@ const initialProfil: ProfilRecord = {
   greetingTitle: "Sambutan Ketua RW / Tokoh Masyarakat",
   greetingName: "Bpk. Heru Prasetyo",
   greetingRole: "Ketua RW 05 Kampung Gendeng",
+  greetingHeadline: "Bersama Membangun Kampung Gendeng yang Maju, Mandiri, dan Mendunia",
   greetingMessage: "Website ini hadir sebagai media informasi resmi Kampung Gendeng untuk masyarakat, sekaligus jendela dunia untuk mengenal potensi, budaya, dan perkembangan kampung kami.",
   greetingImage: "/images/kades_portrait.png",
   historyText: "Desa Gendeng terbentuk secara administratif dari penggabungan wilayah pemukiman asri di Kecamatan Gondokusuman, Yogyakarta.",

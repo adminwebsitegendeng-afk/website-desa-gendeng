@@ -61,6 +61,7 @@ export async function getProfilData(): Promise<ProfilRecord> {
       greetingTitle: "Sambutan",
       greetingName: "-",
       greetingRole: "-",
+      greetingHeadline: "Bersama Membangun Kampung Gendeng yang Maju",
       greetingMessage: "-",
       greetingImage: "",
       historyText: "-",

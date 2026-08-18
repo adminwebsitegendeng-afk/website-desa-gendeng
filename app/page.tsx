@@ -131,7 +131,7 @@ export default function Home() {
                 <span>{profil?.greetingTitle || tr(t.home.greetTitle, lang)}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-dark tracking-tight leading-tight">
-                {tr(t.home.greetHeadline, lang)}
+                {profil?.greetingHeadline || tr(t.home.greetHeadline, lang)}
               </h2>
               <div className="text-medium text-xs sm:text-sm leading-relaxed mt-4 sm:mt-6 space-y-3 sm:space-y-4">
                 <p>{profil?.greetingMessage || tr(t.home.greetBody1, lang)}</p>
