@@ -18,12 +18,24 @@ export default function AdminProfilPage() {
     loadData();
   }, []);
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form) return;
-    await updateProfilData(form);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    try {
+      setErrorMsg("");
+      await updateProfilData(form);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (error: any) {
+      console.error(error);
+      if (error.message?.includes("column")) {
+        setErrorMsg("Gagal: Kolom baru belum ada di database Supabase Anda. Harap jalankan kode SQL untuk menambahkan kolom.");
+      } else {
+        setErrorMsg("Gagal menyimpan perubahan. Periksa koneksi internet.");
+      }
+    }
   };
 
   if (loading || !form) {
