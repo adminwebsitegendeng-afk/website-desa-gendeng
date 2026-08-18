@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -7,6 +9,24 @@ import { t, tr } from "@/lib/i18n/translations";
 
 export default function Footer() {
   const { lang } = useLanguage();
+  const router = useRouter();
+  const [clickCount, setClickCount] = useState(0);
+
+  useEffect(() => {
+    if (clickCount > 0) {
+      const timer = setTimeout(() => setClickCount(0), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [clickCount]);
+
+  const handleSecretClick = () => {
+    if (clickCount >= 2) { // 3 clicks total
+      setClickCount(0);
+      router.push("/admin");
+    } else {
+      setClickCount((prev) => prev + 1);
+    }
+  };
 
   return (
     <footer className="bg-primary-dark text-white pt-12 sm:pt-16 pb-8 border-t border-primary/20">
@@ -104,7 +124,13 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 sm:mt-16 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 text-center md:text-left">
-          <p>© {new Date().getFullYear()} Kampung Gendeng. {tr(t.footer.copyright, lang)}</p>
+          <p 
+            onClick={handleSecretClick} 
+            className="cursor-pointer select-none"
+            title="Sistem Informasi Desa Gendeng"
+          >
+            © {new Date().getFullYear()} Kampung Gendeng. {tr(t.footer.copyright, lang)}
+          </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#" className="hover:text-white">{tr(t.footer.privacy, lang)}</a>
             <a href="#" className="hover:text-white">{tr(t.footer.terms, lang)}</a>

@@ -3,30 +3,39 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
-import { loginAdminSession } from "@/lib/admin/services/adminService";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState("admin@desagendeng.go.id");
-  const [password, setPassword] = useState("admin123");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
 
-    setTimeout(() => {
-      if (username.trim() && password.trim()) {
-        loginAdminSession();
-        setIsLoading(false);
-        router.push("/admin/dashboard");
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        router.push("/admin");
+        router.refresh();
       } else {
-        setIsLoading(false);
-        setErrorMsg("Email/Username dan Password tidak boleh kosong");
+        setErrorMsg(data.message || "Password salah");
       }
-    }, 400);
+    } catch (error) {
+      console.error(error);
+      setErrorMsg("Terjadi kesalahan sistem. Coba lagi.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -35,13 +44,13 @@ export default function AdminLoginPage() {
       <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
         <Logo className="w-16 h-16 mb-3" />
         <span className="text-[11px] font-extrabold uppercase tracking-wider text-primary bg-tint px-3 py-1 rounded-full mb-1">
-          CMS Desa Gendeng
+          Kawasan Terbatas
         </span>
         <h1 className="text-xl sm:text-2xl font-extrabold text-dark tracking-tight">
           Masuk Panel Administrator
         </h1>
         <p className="text-xs text-medium mt-1">
-          Silakan masukkan akun pengelola resmi Desa Gendeng
+          Masukkan Master PIN / Password untuk melanjutkan
         </p>
       </div>
 
@@ -55,21 +64,7 @@ export default function AdminLoginPage() {
       <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
         <div>
           <label className="block text-xs font-extrabold uppercase tracking-wider text-dark mb-1.5">
-            Email / Username Pamong
-          </label>
-          <input
-            type="text"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-primary text-sm font-medium transition-all"
-            placeholder="admin@desagendeng.go.id"
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-extrabold uppercase tracking-wider text-dark mb-1.5">
-            Kata Sandi (Password)
+            Master Password / PIN
           </label>
           <input
             type="password"

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -9,6 +9,18 @@ interface HeaderProps {
 
 export default function AdminHeader({ onToggleSidebar }: HeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    if (!confirm("Apakah Anda yakin ingin keluar dari panel admin?")) return;
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getTitle = () => {
     switch (pathname) {
@@ -68,14 +80,23 @@ export default function AdminHeader({ onToggleSidebar }: HeaderProps) {
           <span>Pratinjau Situs</span>
         </Link>
 
-        <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200/80 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-2.5 bg-gray-50 border border-gray-200/80 pl-2 pr-3 py-1.5 rounded-full">
           <div className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
             A
           </div>
-          <div className="hidden md:flex flex-col text-left">
+          <div className="hidden md:flex flex-col text-left mr-2">
             <span className="text-xs font-extrabold text-dark leading-tight">Admin Desa</span>
             <span className="text-[10px] text-medium leading-tight">Gendeng, Gondokusuman</span>
           </div>
+          <button
+            onClick={handleLogout}
+            className="w-7 h-7 rounded-full bg-red-50 text-red-600 hover:bg-red-100 flex items-center justify-center transition-colors border border-red-100"
+            title="Keluar (Logout)"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
         </div>
       </div>
     </header>
