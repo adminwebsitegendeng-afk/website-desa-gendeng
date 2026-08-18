@@ -27,7 +27,7 @@ export default function ProfilDesa() {
   const visionMission = {
     vision: profil?.visionText || (lang === "en"
       ? "Realizing a Progressive, Independent, Prosperous Kampung Gendeng with Noble Cultural Character and Excellence in Integrated Agribusiness by 2030."
-      : "Terwujudnya Desa Gendeng yang Maju, Mandiri, Sejahtera, Berkarakter Budaya Luhur, dan Unggul dalam Sektor Agribisnis Terpadu pada Tahun 2030."),
+      : "Terwujudnya Kampung Gendeng yang Maju, Mandiri, Sejahtera, Berkarakter Budaya Luhur, dan Unggul dalam Sektor Agribisnis Terpadu pada Tahun 2030."),
     missions: (profil?.missionText && profil.missionText.trim() !== "-") ? profil.missionText.split('\n').filter(Boolean) : (lang === "en"
       ? [
         "Improve digital-based public service quality that is fast, friendly, and transparent.",
@@ -49,7 +49,7 @@ export default function ProfilDesa() {
     {
       year: "1948",
       title: lang === "en" ? "Hamlet Consolidation" : "Penggabungan Dusun",
-      desc: lang === "en" ? "Kampung Gendeng was formed administratively post-independence." : "Desa Gendeng terbentuk secara administratif dari penggabungan tiga dusun lama pasca-kemerdekaan RI."
+      desc: lang === "en" ? "Kampung Gendeng was formed administratively post-independence." : "Kampung Gendeng terbentuk secara administratif dari penggabungan tiga dusun lama pasca-kemerdekaan RI."
     },
     {
       year: "1975",
@@ -120,8 +120,8 @@ export default function ProfilDesa() {
                 ) : (
                   <>
                     <p>Nama <strong>&ldquo;Gendeng&rdquo;</strong> di sini dibaca seperti lafal &quot;genting&quot; dalam bahasa Jawa (bukan bermakna kurang waras), yang konon berasal dari kata gending karena dahulu wilayah ini pernah ditinggali oleh seorang abdi dalem ahli tembang atau seni suara Jawa.</p>
-                    <p>Pasca-kemerdekaan, melalui konsolidasi tata kelola wilayah pada tahun 1948, tiga dukuh menyatukan tekad untuk melebur menjadi satu kelurahan. Sejak saat itu, nilai gotong royong terpatri kuat sebagai jati diri masyarakat Desa Gendeng.</p>
-                    <p>Hari ini, Desa Gendeng berkembang pesat sebagai salah satu sentra kerajinan bambu terkemuka di D.I. Yogyakarta dengan tetap mempertahankan lanskap agrarisnya yang hijau dan asri.</p>
+                    <p>Pasca-kemerdekaan, melalui konsolidasi tata kelola wilayah pada tahun 1948, tiga dukuh menyatukan tekad untuk melebur menjadi satu kelurahan. Sejak saat itu, nilai gotong royong terpatri kuat sebagai jati diri masyarakat Kampung Gendeng.</p>
+                    <p>Hari ini, Kampung Gendeng berkembang pesat sebagai salah satu sentra kerajinan bambu terkemuka di D.I. Yogyakarta dengan tetap mempertahankan lanskap agrarisnya yang hijau dan asri.</p>
                   </>
                 )}
               </div>

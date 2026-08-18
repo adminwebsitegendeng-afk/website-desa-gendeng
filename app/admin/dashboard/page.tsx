@@ -52,7 +52,7 @@ export default function AdminDashboardPage() {
             Selamat Datang di Panel CMS
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-            Pusat Pengelolaan Konten Desa Gendeng
+            Pusat Pengelolaan Konten Kampung Gendeng
           </h2>
           <p className="text-white/80 text-xs sm:text-sm mt-1.5 max-w-xl leading-relaxed">
             Kelola profil desa, agenda warga, produk UMKM, destinasi wisata, dan galeri media publik secara terpadu.

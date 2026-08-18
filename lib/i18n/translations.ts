@@ -17,7 +17,7 @@ export const t = {
   home: {
     heroWelcome:  { id: "Selamat Datang di",             en: "Welcome to" },
     heroTagline:  { id: "Mengenalkan Desa, Memberdayakan Potensi, Mendunia!", en: "Introducing the Village, Empowering Potential, Going Global!" },
-    heroDesc:     { id: "Desa Gendeng adalah kampung yang maju, mandiri, berbudaya dan terbuka untuk dunia.", en: "Kampung Gendeng is a progressive, independent, cultured, and globally open community." },
+    heroDesc:     { id: "Kampung Gendeng adalah kampung yang maju, mandiri, berbudaya dan terbuka untuk dunia.", en: "Kampung Gendeng is a progressive, independent, cultured, and globally open community." },
     heroExplore:  { id: "Jelajahi Desa",                 en: "Explore Village" },
     heroVideo:    { id: "Tonton Video",                  en: "Watch Video" },
     greetTitle:   { id: "Sambutan Ketua RW",             en: "Chairman's Greeting" },
@@ -75,7 +75,7 @@ export const t = {
   wisata: {
     tag:       { id: "Warisan Alam & Tradisi",           en: "Natural Heritage & Tradition" },
     title:     { id: "Wisata & Budaya",                  en: "Tourism & Culture" },
-    subtitle:  { id: "Desa Gendeng memiliki kekayaan budaya, tradisi, dan kearifan lokal yang terus dilestarikan secara turun-temurun.", en: "Kampung Gendeng has rich cultural heritage, traditions, and local wisdom passed down through generations." },
+    subtitle:  { id: "Kampung Gendeng memiliki kekayaan budaya, tradisi, dan kearifan lokal yang terus dilestarikan secara turun-temurun.", en: "Kampung Gendeng has rich cultural heritage, traditions, and local wisdom passed down through generations." },
     alertBadge:{ id: "Mari lestarikan budaya lokal",     en: "Let's preserve local culture" },
     alertSub:  { id: "Kenali, cintai, dan lestarikan budaya kita bersama.", en: "Know, love, and preserve our culture together." },
     destH:     { id: "Destinasi & Daya Tarik",           en: "Destinations & Attractions" },

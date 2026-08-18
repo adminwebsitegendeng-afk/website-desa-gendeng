@@ -56,7 +56,7 @@ export default function WargaKomunitasPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={homepage?.heroImageWarga || "/images/community_event.png"}
-            alt="Warga & Komunitas Desa Gendeng"
+            alt="Warga & Komunitas Kampung Gendeng"
             fill
             priority
             className="object-cover opacity-60"
@@ -166,7 +166,7 @@ export default function WargaKomunitasPage() {
                           {act.title || "Kegiatan Warga"}
                         </h3>
                         <p className="text-xs text-medium leading-relaxed mb-4 line-clamp-4">
-                          {act.shortDesc || act.description || "Agenda kegiatan warga Desa Gendeng."}
+                          {act.shortDesc || act.description || "Agenda kegiatan warga Kampung Gendeng."}
                         </p>
                       </div>
 

@@ -117,7 +117,7 @@ export default function AdminHomepagePage() {
               value={form.heroDesc}
               onChange={(e) => setForm({ ...form, heroDesc: e.target.value })}
               className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-sm font-medium focus:outline-none focus:border-primary"
-              placeholder="Deskripsi singkat mengenai Desa Gendeng..."
+              placeholder="Deskripsi singkat mengenai Kampung Gendeng..."
             />
           </div>
 

@@ -69,7 +69,7 @@ export default function PotensiEkonomi() {
         <div className="absolute inset-0 z-0">
           <Image
             src={homepage?.heroImagePotensi || "/images/community_event.png"}
-            alt="Potensi & Ekonomi Desa Gendeng"
+            alt="Potensi & Ekonomi Kampung Gendeng"
             fill
             priority
             className="object-cover opacity-60"

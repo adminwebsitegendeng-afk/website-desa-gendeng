@@ -73,7 +73,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src={homepage?.heroImage || "/images/community_event.png"}
-            alt="Kegiatan Guyub Desa Gendeng"
+            alt="Kegiatan Guyub Kampung Gendeng"
             fill
             priority
             className="object-cover object-[center_30%] sm:object-center opacity-95 scale-100"
@@ -117,7 +117,7 @@ export default function Home() {
               <div className="relative w-full max-w-[260px] sm:max-w-xs aspect-square rounded-3xl overflow-hidden shadow-ios-lg border-4 border-tint">
                 <Image
                   src={profil?.greetingImage || "/images/kades_portrait.png"}
-                  alt="Kepala Desa Gendeng"
+                  alt="Kepala Kampung Gendeng"
                   fill
                   className="object-cover object-top"
                 />

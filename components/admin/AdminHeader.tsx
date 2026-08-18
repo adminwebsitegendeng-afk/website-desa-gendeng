@@ -61,7 +61,7 @@ export default function AdminHeader({ onToggleSidebar }: HeaderProps) {
 
         <div className="flex flex-col">
           <span className="text-[10px] font-extrabold uppercase tracking-wider text-primary">
-            Sistem Informasi Desa Gendeng
+            Sistem Informasi Kampung Gendeng
           </span>
           <h1 className="text-base sm:text-xl font-extrabold text-dark tracking-tight">
             {getTitle()}

@@ -185,7 +185,7 @@ export default function KontakLokasi() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero_gendeng.png"
-            alt="Kontak & Lokasi Kantor Desa Gendeng"
+            alt="Kontak & Lokasi Kantor Kampung Gendeng"
             fill
             className="object-cover opacity-50"
             priority

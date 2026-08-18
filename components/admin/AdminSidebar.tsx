@@ -53,7 +53,7 @@ export default function AdminSidebar({ isOpen, onClose }: SidebarProps) {
               <Logo className="w-9 h-9" />
               <div className="flex flex-col">
                 <span className="text-sm font-extrabold tracking-tight text-white">
-                  CMS Desa Gendeng
+                  CMS Kampung Gendeng
                 </span>
                 <span className="text-[10px] text-accent font-bold uppercase tracking-wider">
                   Panel Administrator

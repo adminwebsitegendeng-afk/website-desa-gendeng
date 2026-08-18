@@ -34,7 +34,7 @@ export default function WisataBudaya() {
 
   const calendarEvents = [
     { month: "JUN", date: "15", title: lang === "en" ? "Gunungan Festival" : "Tradisi Gunungan", desc: "June 2025" },
-    { month: "AUG", date: "17", title: lang === "en" ? "Independence Day Celebration" : "Peringatan HUT RI Desa Gendeng", desc: "17 August 2025" },
+    { month: "AUG", date: "17", title: lang === "en" ? "Independence Day Celebration" : "Peringatan HUT RI Kampung Gendeng", desc: "17 August 2025" },
     { month: "SEP", date: "10", title: lang === "en" ? "Grand Cultural Gathering" : "Pengajian Akbar", desc: "10 September 2025" },
   ];
 
@@ -45,7 +45,7 @@ export default function WisataBudaya() {
         <div className="absolute inset-0 z-0">
           <Image
             src={homepage?.heroImageWisata || "/images/community_event.png"}
-            alt="Wisata & Budaya Desa Gendeng"
+            alt="Wisata & Budaya Kampung Gendeng"
             fill
             priority
             className="object-cover opacity-60"

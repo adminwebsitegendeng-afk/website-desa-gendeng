@@ -127,7 +127,7 @@ export default function Footer() {
           <p 
             onClick={handleSecretClick} 
             className="cursor-pointer select-none"
-            title="Sistem Informasi Desa Gendeng"
+            title="Sistem Informasi Kampung Gendeng"
           >
             © {new Date().getFullYear()} Kampung Gendeng. {tr(t.footer.copyright, lang)}
           </p>
