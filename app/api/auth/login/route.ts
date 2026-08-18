@@ -4,8 +4,8 @@ export async function POST(request: Request) {
   try {
     const { password } = await request.json();
     
-    // Gunakan password dari environment variable, atau default 'AdminGendeng2024!' jika tidak diset
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'AdminGendeng2024!';
+    // Gunakan password dari environment variable, atau default 'PRADOPO123' jika tidak diset
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'PRADOPO123';
 
     if (password === ADMIN_PASSWORD) {
       const response = NextResponse.json({ success: true, message: 'Login berhasil' });
