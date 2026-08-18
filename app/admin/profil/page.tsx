@@ -1,18 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getProfilData, updateProfilData } from "@/lib/admin/services/adminService";
-import { ProfilData } from "@/lib/admin/types";
+import { getProfilData, updateProfilData, getHomepageData, updateHomepageData } from "@/lib/admin/services/adminService";
+import { ProfilData, HomepageData } from "@/lib/admin/types";
 
 export default function AdminProfilPage() {
   const [form, setForm] = useState<ProfilData | null>(null);
+  const [homepage, setHomepage] = useState<HomepageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     async function loadData() {
-      const data = await getProfilData();
+      const [data, hp] = await Promise.all([getProfilData(), getHomepageData()]);
       setForm(data);
+      setHomepage(hp as unknown as HomepageData);
       setLoading(false);
     }
     loadData();
@@ -25,7 +27,10 @@ export default function AdminProfilPage() {
     if (!form) return;
     try {
       setErrorMsg("");
-      await updateProfilData(form);
+      await Promise.all([
+        updateProfilData(form),
+        homepage ? updateHomepageData(homepage) : Promise.resolve()
+      ]);
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (error: unknown) {
@@ -67,6 +72,45 @@ export default function AdminProfilPage() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Gambar Latar Hero Section */}
+        <div className="bg-white rounded-3xl border border-gray-200/70 p-6 shadow-ios space-y-4">
+          <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider">Gambar Latar Hero (Atas)</h3>
+          <div>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file && homepage) {
+                    try {
+                      const { uploadImageFile } = await import("@/lib/upload");
+                      const url = await uploadImageFile(file);
+                      setHomepage({ ...homepage, heroImageProfil: url });
+                    } catch (err: unknown) {
+                      console.error(err);
+                      alert("Gagal mengunggah gambar hero");
+                    }
+                  }
+                }}
+                className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={homepage?.heroImageProfil || ""}
+                onChange={(e) => setHomepage({ ...homepage!, heroImageProfil: e.target.value })}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+                placeholder="Atau masukkan URL gambar..."
+              />
+            </div>
+            {homepage?.heroImageProfil && (
+              <div className="mt-3 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img src={homepage.heroImageProfil} alt="Preview Hero" className="w-full h-full object-cover" />
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Sambutan Section */}
         <div className="bg-white rounded-3xl border border-gray-200/70 p-6 shadow-ios space-y-4">
           <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider">1. Sambutan Ketua RW / Lurah</h3>

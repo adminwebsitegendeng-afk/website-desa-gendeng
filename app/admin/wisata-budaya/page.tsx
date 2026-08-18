@@ -6,14 +6,18 @@ import {
   createWisata,
   updateWisata,
   deleteWisata,
+  getHomepageData,
+  updateHomepageData
 } from "@/lib/admin/services/adminService";
-import { WisataItem } from "@/lib/admin/types";
+import { WisataItem, HomepageData } from "@/lib/admin/types";
 import AdminModal from "@/components/admin/AdminModal";
 
 export default function AdminWisataBudayaPage() {
   const [list, setList] = useState<WisataItem[]>([]);
+  const [homepage, setHomepage] = useState<HomepageData | null>(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [hpSaving, setHpSaving] = useState(false);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,8 +35,9 @@ export default function AdminWisataBudayaPage() {
   });
 
   const loadData = async () => {
-    const data = await getWisataList();
+    const [data, hp] = await Promise.all([getWisataList(), getHomepageData()]);
     setList(data);
+    setHomepage(hp as unknown as HomepageData);
     setLoading(false);
   };
 
@@ -121,9 +126,62 @@ export default function AdminWisataBudayaPage() {
           onClick={openCreateModal}
           className="bg-primary hover:bg-primary-hover active-press text-white px-5 py-2.5 rounded-full text-xs font-extrabold shadow-ios transition-all flex items-center gap-1.5 self-start sm:self-auto"
         >
-          <span>+ Tambah Wisata Baru</span>
+          <span>+ Tambah Wisata / Tradisi</span>
         </button>
       </div>
+
+      {homepage && (
+        <div className="bg-white rounded-3xl border border-gray-200/70 p-6 shadow-ios space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider">Gambar Latar Hero (Atas)</h3>
+            <button
+              onClick={async () => {
+                setHpSaving(true);
+                await updateHomepageData(homepage);
+                setHpSaving(false);
+                alert("Gambar hero berhasil disimpan!");
+              }}
+              className="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-full font-extrabold text-[10px] uppercase shadow-sm transition-all"
+            >
+              {hpSaving ? "Menyimpan..." : "Simpan Gambar"}
+            </button>
+          </div>
+          <div>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    try {
+                      const { uploadImageFile } = await import("@/lib/upload");
+                      const url = await uploadImageFile(file);
+                      setHomepage({ ...homepage, heroImageWisata: url });
+                    } catch (err: unknown) {
+                      console.error(err);
+                      alert("Gagal mengunggah gambar hero");
+                    }
+                  }
+                }}
+                className="text-xs text-medium file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-extrabold file:bg-tint file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={homepage.heroImageWisata || ""}
+                onChange={(e) => setHomepage({ ...homepage, heroImageWisata: e.target.value })}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+                placeholder="Atau masukkan URL gambar..."
+              />
+            </div>
+            {homepage.heroImageWisata && (
+              <div className="mt-3 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img src={homepage.heroImageWisata} alt="Preview Hero" className="w-full h-full object-cover" />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="bg-white rounded-3xl border border-gray-200/70 p-4 shadow-sm">
         <input
