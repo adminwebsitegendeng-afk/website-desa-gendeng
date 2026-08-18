@@ -28,9 +28,10 @@ export default function AdminProfilPage() {
       await updateProfilData(form);
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      if (error.message?.includes("column")) {
+      const err = error as Error;
+      if (err.message?.includes("column")) {
         setErrorMsg("Gagal: Kolom baru belum ada di database Supabase Anda. Harap jalankan kode SQL untuk menambahkan kolom.");
       } else {
         setErrorMsg("Gagal menyimpan perubahan. Periksa koneksi internet.");
@@ -55,6 +56,13 @@ export default function AdminProfilPage() {
         <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold rounded-2xl flex items-center gap-2">
           <span>✅</span>
           <span>Perubahan Profil Desa berhasil disimpan!</span>
+        </div>
+      )}
+
+      {errorMsg && (
+        <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-xs font-extrabold rounded-2xl flex items-center gap-2">
+          <span>⚠️</span>
+          <span>{errorMsg}</span>
         </div>
       )}
 
