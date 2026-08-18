@@ -100,5 +100,6 @@ export interface HomepageData {
   heroImagePotensi?: string;
   heroImageWisata?: string;
   heroImageWarga?: string;
+  heroImagePos?: string;
   highlights: HighlightReference[];
 }

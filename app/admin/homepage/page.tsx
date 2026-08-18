@@ -152,9 +152,23 @@ export default function AdminHomepagePage() {
             </div>
             {form.heroImage && (
               <div className="mt-2 relative w-full h-32 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-                <img src={form.heroImage} alt="Hero Preview" className="w-full h-full object-cover" />
+                <img src={form.heroImage} alt="Hero Preview" className={`w-full h-full object-cover ${form.heroImagePos || 'object-center'}`} />
               </div>
             )}
+            
+            <div className="mt-4">
+              <label className="block text-xs font-extrabold uppercase text-dark mb-1">Posisi Crop Gambar Hero</label>
+              <select
+                value={form.heroImagePos || "object-center"}
+                onChange={(e) => setForm({ ...form, heroImagePos: e.target.value })}
+                className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary bg-white"
+              >
+                <option value="object-top">Atas (Fokus pada kepala/tangan di atas)</option>
+                <option value="object-center">Tengah (Standar)</option>
+                <option value="object-bottom">Bawah (Fokus pada bagian bawah)</option>
+              </select>
+              <p className="text-[10px] text-gray-500 mt-1">Gunakan fitur ini jika gambar terpotong di halaman utama.</p>
+            </div>
           </div>
         </div>
 

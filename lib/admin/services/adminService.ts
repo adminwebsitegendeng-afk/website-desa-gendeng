@@ -53,6 +53,9 @@ export function logoutAdminSession(): void {
 // ─── PROFIL DESA ───
 export async function getProfilData(): Promise<ProfilRecord> {
   const { data, error } = await supabase.from("profil_desa").select("*").eq("id", 1).single();
+  if (error && error.code !== "PGRST116") {
+    throw new Error(`Database error: ${error.message}`);
+  }
   if (error || !data) {
     return {
       villageName: "Kampung Gendeng",
@@ -187,6 +190,9 @@ export async function deleteGaleriItem(id: string): Promise<boolean> {
 // ─── HOMEPAGE SETTINGS ───
 export async function getHomepageData(): Promise<HomepageRecord> {
   const { data, error } = await supabase.from("homepage_settings").select("*").eq("id", 1).single();
+  if (error && error.code !== "PGRST116") {
+    throw new Error(`Database error: ${error.message}`);
+  }
   if (error || !data) {
     return {
       heroWelcome: "Selamat Datang di",

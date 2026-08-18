@@ -76,7 +76,7 @@ export default function Home() {
             alt="Kegiatan Guyub Kampung Gendeng"
             fill
             priority
-            className="object-cover object-[center_30%] sm:object-center opacity-95 scale-100"
+            className={`object-cover opacity-95 scale-100 ${homepage?.heroImagePos || "object-[center_30%] sm:object-center"}`}
           />
           {/* Subtle dark green gradient overlay on the left for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/35 to-transparent z-1 pointer-events-none" />

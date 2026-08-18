@@ -103,9 +103,13 @@ export default function PotensiEkonomiDetailPage() {
                 <h2 className="text-xl sm:text-2xl font-extrabold text-dark tracking-tight mb-4">
                   Deskripsi Produk
                 </h2>
-                <p className="text-medium text-xs sm:text-base leading-relaxed whitespace-pre-line">
-                  {item.description}
-                </p>
+                <div className="text-medium text-xs sm:text-base leading-relaxed">
+                  {(item.description || "").split('\n').map((paragraph, idx) => (
+                    <p key={idx} className="mb-3 last:mb-0">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
 
               {/* Photo Gallery Grid */}

@@ -81,6 +81,7 @@ export interface HomepageRecord {
   heroImagePotensi?: string;
   heroImageWisata?: string;
   heroImageWarga?: string;
+  heroImagePos?: string;
   highlights?: unknown[]; // Allow JSON array
 }
 
