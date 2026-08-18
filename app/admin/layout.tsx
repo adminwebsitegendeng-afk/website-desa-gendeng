@@ -15,11 +15,11 @@ export default function AdminLayout({
 
   // Render Login Page Screen
   if (pathname === "/admin/login") {
-    return <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">{children}</div>;
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 notranslate" translate="no">{children}</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50/50 flex flex-col lg:flex-row font-sans text-dark">
+    <div className="min-h-screen bg-gray-50/50 flex flex-col lg:flex-row font-sans text-dark notranslate" translate="no">
       {/* Sidebar Navigation */}
       <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
