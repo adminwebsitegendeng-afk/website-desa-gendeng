@@ -70,6 +70,7 @@ export interface PotensiItem {
   description: string;
   coverImage: string;
   gallery?: string[];
+  employee_count?: number;
   status: ContentStatus;
 }
 

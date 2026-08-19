@@ -219,6 +219,24 @@ export default function PotensiEkonomi() {
                   </div>
                 </div>
 
+                {productList.reduce((acc, p) => acc + (p.employee_count || 0), 0) > 0 && (
+                  <div className="flex items-center justify-between bg-accent/10 p-3 rounded-2xl mb-4 border border-accent/20">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">👥</span>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-extrabold text-dark">Tenaga Kerja</span>
+                        <span className="text-[10px] text-medium">Pekerja Lokal Terserap</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-lg font-extrabold text-accent">
+                        {productList.reduce((acc, p) => acc + (p.employee_count || 0), 0)}
+                      </span>
+                      <span className="text-[10px] text-medium ml-1">Orang</span>
+                    </div>
+                  </div>
+                )}
+
                 {categories.filter(c => c !== "Semua").map((cat, idx) => {
                   const count = productList.filter((p) => p.category === cat).length;
                   if (count === 0) return null; // Only show categories that have items

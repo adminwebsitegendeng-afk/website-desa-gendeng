@@ -39,6 +39,7 @@ export interface PotensiRecord {
   ownerOrLoc: string;
   description: string;
   coverImage: string;
+  employee_count?: number;
   status: ContentStatus;
 }
 

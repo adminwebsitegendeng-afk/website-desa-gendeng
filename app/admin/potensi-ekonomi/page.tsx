@@ -29,6 +29,7 @@ export default function AdminPotensiEkonomiPage() {
     description: "",
     coverImage: "/images/potensi_crafts.png",
     gallery: [] as string[],
+    employee_count: undefined as number | undefined,
     status: "published" as "published" | "draft",
   });
 
@@ -52,6 +53,7 @@ export default function AdminPotensiEkonomiPage() {
       description: "",
       coverImage: "/images/potensi_crafts.png",
       gallery: [],
+      employee_count: undefined,
       status: "published",
     });
     setIsModalOpen(true);
@@ -66,6 +68,7 @@ export default function AdminPotensiEkonomiPage() {
       description: item.description,
       coverImage: item.coverImage,
       gallery: item.gallery || (item.coverImage ? [item.coverImage] : []),
+      employee_count: item.employee_count,
       status: item.status,
     });
     setIsModalOpen(true);
@@ -287,6 +290,18 @@ export default function AdminPotensiEkonomiPage() {
                 placeholder="Gendeng, Yogyakarta"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-extrabold uppercase text-dark mb-1">Jumlah Karyawan / Pekerja (Opsional)</label>
+            <input
+              type="number"
+              min="0"
+              value={form.employee_count === undefined ? "" : form.employee_count}
+              onChange={(e) => setForm({ ...form, employee_count: e.target.value ? parseInt(e.target.value, 10) : undefined })}
+              className="w-full px-4 py-2.5 rounded-2xl border border-gray-200 text-xs font-medium focus:outline-none focus:border-primary"
+              placeholder="Contoh: 5"
+            />
           </div>
 
           <div>
