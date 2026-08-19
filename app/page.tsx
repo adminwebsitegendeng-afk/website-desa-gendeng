@@ -70,14 +70,16 @@ export default function Home() {
     <div className="flex flex-col w-full min-h-screen bg-white">
       {/* 1. Hero Section */}
       <section className="relative w-full min-h-[480px] sm:min-h-[540px] lg:min-h-[580px] flex items-center justify-start text-white overflow-hidden bg-primary-dark py-12 sm:py-16 md:py-20">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={homepage?.heroImage || "/images/community_event.png"}
-            alt="Kegiatan Guyub Kampung Gendeng"
-            fill
-            priority
-            className={`object-cover opacity-95 scale-100 ${homepage?.heroImagePos || "object-[center_30%] sm:object-center"}`}
-          />
+        <div className="absolute inset-0 z-0 bg-primary-dark">
+          {homepage && (
+            <Image
+              src={homepage.heroImage || "/images/hero_gendeng.png"}
+              alt="Kegiatan Guyub Kampung Gendeng"
+              fill
+              priority
+              className={`object-cover opacity-95 scale-100 ${homepage.heroImagePos || "object-[center_30%] sm:object-center"}`}
+            />
+          )}
           {/* Subtle dark green gradient overlay on the left for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/35 to-transparent z-1 pointer-events-none" />
         </div>
