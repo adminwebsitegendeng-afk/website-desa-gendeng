@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getWargaList, getWisataList, getPotensiList } from '@/lib/admin/services/adminService'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://website-desa-gendeng.vercel.app'
+  const baseUrl = 'https://kampunggendeng.vercel.app'
 
   // Fetch dynamic content
   const [wargaList, wisataList, potensiList] = await Promise.all([

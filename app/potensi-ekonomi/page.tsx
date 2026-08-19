@@ -205,61 +205,48 @@ export default function PotensiEkonomi() {
                 Ringkasan Potensi Ekonomi
               </h3>
 
-              <div className="space-y-5">
-                <div className="flex items-center justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between bg-primary/5 p-3 rounded-2xl mb-2">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">🏪</span>
                     <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-dark">Total UMKM</span>
-                      <span className="text-[10px] text-medium">Unit Usaha Terdaftar</span>
+                      <span className="text-xs font-extrabold text-dark">Total Keseluruhan</span>
+                      <span className="text-[10px] text-medium">Unit Usaha & Potensi</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-extrabold text-primary">128</span>
-                    <span className="text-[10px] text-medium ml-1">Usaha</span>
+                    <span className="text-lg font-extrabold text-primary">{productList.length}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">👥</span>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-dark">Tenaga Kerja</span>
-                      <span className="text-[10px] text-medium">Pekerja Lokal Terserap</span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-lg font-extrabold text-primary">356</span>
-                    <span className="text-[10px] text-medium ml-1">Orang</span>
-                  </div>
-                </div>
+                {categories.filter(c => c !== "Semua").map((cat, idx) => {
+                  const count = productList.filter((p) => p.category === cat).length;
+                  if (count === 0) return null; // Only show categories that have items
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">📊</span>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-dark">Sektor Dominan</span>
-                      <span className="text-[10px] text-medium">Sektor Perekonomian</span>
-                    </div>
-                  </div>
-                  <div className="text-right max-w-[140px]">
-                    <span className="text-[10px] font-extrabold text-primary block leading-tight">Makanan, Kerajinan</span>
-                  </div>
-                </div>
+                  const icons: Record<string, string> = {
+                    "UMKM Unggulan": "🛍️",
+                    "Perdagangan": "⚖️",
+                    "Jasa": "💼",
+                    "Ekonomi Kreatif": "🎨",
+                    "Pertanian Perkotaan": "🌾",
+                    "Lainnya": "📦"
+                  };
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">🤝</span>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-extrabold text-dark">Kemitraan Aktif</span>
-                      <span className="text-[10px] text-medium">Koperasi & Swasta</span>
+                  return (
+                    <div key={idx} className="flex items-center justify-between border-b border-gray-50 pb-3 last:border-0 last:pb-0">
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl">{icons[cat] || "📌"}</span>
+                        <div className="flex flex-col">
+                          <span className="text-[11px] font-extrabold text-dark">{cat}</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-extrabold text-primary">{count}</span>
+                        <span className="text-[10px] text-medium ml-1">Produk</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-lg font-extrabold text-primary">12</span>
-                    <span className="text-[10px] text-medium ml-1">Mitra</span>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           </div>

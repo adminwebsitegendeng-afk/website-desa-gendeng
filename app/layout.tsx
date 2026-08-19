@@ -12,7 +12,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://website-desa-gendeng.vercel.app"),
+  metadataBase: new URL("https://kampunggendeng.vercel.app"),
   title: {
     default: "Website Resmi Kampung Gendeng | Yogyakarta",
     template: "%s | Kampung Gendeng",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://website-desa-gendeng.vercel.app",
+    url: "https://kampunggendeng.vercel.app",
     siteName: "Kampung Gendeng",
     title: "Website Resmi Kampung Gendeng | Yogyakarta",
     description: "Portal Informasi Resmi Kampung Gendeng, Gondokusuman, Yogyakarta. Temukan potensi ekonomi UMKM, budaya lokal, pariwisata, dan kegiatan warga kami.",
