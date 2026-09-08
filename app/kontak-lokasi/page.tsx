@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
-import MapViewer from "@/components/MapViewer";
 import { getMapLocations } from "@/lib/admin/services/adminService";
 import { MapLocation } from "@/lib/admin/types";
 
@@ -209,15 +208,21 @@ export default function KontakLokasi() {
       <section className="py-14 sm:py-20 bg-white flex-grow">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           
-          {/* Interactive WebGIS Map Wrapper (Top Full Width 16:9) */}
+          {/* Static Map Wrapper (Top Full Width) */}
           <div className="mb-12 sm:mb-16 bg-white border border-gray-200/70 rounded-3xl p-3 sm:p-4 shadow-ios w-full">
             <div className="flex items-center justify-between mb-3 px-2">
               <h2 className="text-lg sm:text-xl font-extrabold text-dark flex items-center gap-2">
-                <span>📍</span> {lang === "en" ? "Interactive Digital Map" : "Peta Digital Interaktif"}
+                <span>📍</span> {lang === "en" ? "Village Administration Map" : "Peta Administrasi Kampung Gendeng"}
               </h2>
             </div>
-            <div className="w-full aspect-video min-h-[300px] bg-gray-50 rounded-2xl relative overflow-hidden border border-gray-100 shadow-inner">
-              <MapViewer locations={mapLocations} />
+            <div className="w-full relative overflow-hidden rounded-2xl border border-gray-100 shadow-inner group">
+              <Image 
+                src="/images/peta_gendeng.jpg" 
+                alt="Peta Administrasi Kampung Gendeng" 
+                width={1920}
+                height={1280}
+                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+              />
             </div>
           </div>
 

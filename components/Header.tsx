@@ -41,7 +41,7 @@ export default function Header() {
               <span className="text-sm sm:text-base font-extrabold text-[#111827] leading-tight group-hover:text-[#14532d] transition-colors">
                 Kampung Gendeng
               </span>
-              <span className="text-[10px] sm:text-xs text-[#6b7280] font-medium leading-tight">
+              <span className="text-[10px] sm:text-xs text-[#6b7280] font-medium leading-tight truncate max-w-[120px] lg:max-w-[160px] xl:max-w-[250px]">
                 Kel. Baciro, Kec. Gondokusuman, Kota Yogyakarta
               </span>
             </div>
