@@ -45,27 +45,6 @@ export default function ProfilDesa() {
       ]),
   };
 
-  const historyTimeline = [
-    {
-      year: "1948",
-      title: lang === "en" ? "Hamlet Consolidation" : "Penggabungan Dusun",
-      desc: lang === "en" ? "Kampung Gendeng was formed administratively post-independence." : "Kampung Gendeng terbentuk secara administratif dari penggabungan tiga dusun lama pasca-kemerdekaan RI."
-    },
-    {
-      year: "1975",
-      title: lang === "en" ? "Creative Bamboo Center" : "Sentra Bambu Kreatif",
-      desc: lang === "en" ? "Residents organized traditional bamboo craft groups." : "Warga mulai mengorganisasi diri membentuk kelompok perajin bambu tradisional."
-    },
-    {
-      year: "2010",
-      title: lang === "en" ? "Organic Farming Pioneer" : "Pionir Pertanian Organik",
-      desc: lang === "en" ? "Manunggal farmers group converted paddy fields to national organic certification." : "Kelompok tani Manunggal sukses mengonversi sawah konvensional menjadi organik."
-    },
-    {
-      year: "2020",
-      title: lang === "en" ? "Independent Village DIY" : "Desa Mandiri DIY",
-    },
-  ];
 
   const displayOfficials = profil?.officials && profil.officials.length > 0 
     ? profil.officials 
@@ -100,49 +79,35 @@ export default function ProfilDesa() {
 
       {/* Sejarah Desa */}
       <section className="py-14 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tint text-primary font-extrabold text-xs uppercase tracking-wider mb-2">
-                <span>📜</span>
-                <span>{tr(t.profil.historyTag, lang)}</span>
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-dark tracking-tight mt-1">
-                {tr(t.profil.historyH2, lang)}
-              </h2>
-              <div className="text-medium text-xs sm:text-sm leading-relaxed mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-justify">
-                {lang === "en" ? (
-                  <>
-                    <p className="font-extrabold text-dark text-sm sm:text-base mb-2">The History of Kampung Gendeng: From Abdi Dalem&apos;s Gending to Cultural Heritage</p>
-                    <p>The history of Kampung Gendeng in Baciro is deeply rooted in local oral traditions. The unique name does not refer to roof tiles or any other denotative meaning, but originated from a mispronunciation of the word <em>gending</em> (Javanese musical composition).</p>
-                    <p>Long ago, a royal court artist (Abdi Dalem) lived in this area, which was surrounded by rice fields. He frequently played and taught Javanese gamelan. The beautiful <em>gending</em> melodies attracted local farmers and passersby who eventually joined the practice.</p>
-                    <p>Phrases like &quot;Ayo latihan gending!&quot; (Let&apos;s practice gending!) gradually shifted in pronunciation to &quot;Gendeng&quot; over time. Historically, the area was also known for producing padas stone, further defining its geographical identity with sub-areas like Gendeng Padasan and Gendeng Sapen.</p>
-                    <p>Today, Kampung Gendeng stands strong as a cultural pillar in Kelurahan Baciro, where the artistic legacy of the Abdi Dalem lives on through the community&apos;s collective spirit in preserving regional arts.</p>
-                  </>
-                ) : (
-                  <>
-                    <p className="font-extrabold text-dark text-sm sm:text-base mb-2">Sejarah Kampung Gendeng: Dari Alunan Gending Abdi Dalem Hingga Warisan Kebudayaan</p>
-                    <p>Keberadaan Kampung Gendeng yang terletak di wilayah Kelurahan Baciro tidak lepas dari rekam jejak sejarah dan tradisi lisan yang diwariskan secara turun-temurun. Namanya yang unik kerap memantik rasa ingin tahu masyarakat luas. Konon, penamaan &quot;Gendeng&quot; tidak berkaitan dengan pembuatan genteng bangunan atau makna denotatif lainnya, melainkan bermula dari kekeliruan pelafalan atau kesleo lidah dari kata dasar <em>gending</em>.</p>
-                    <p>Kisah ini bermula di masa lampau ketika kawasan tersebut masih didominasi oleh hamparan sawah. Bermukimlah seorang Abdi Dalem seniman pengrawit Keraton Yogyakarta di sekitar area yang kini menjadi lapangan dekat pos ronda/pemukiman warga. Di sela-sela aktivitasnya, sang Abdi Dalem sering memainkan dan melatih gending-gending gamelan Jawa. Alunan merdu gending tersebut kerap terdengar hingga ke area persawahan dan menarik perhatian para petani serta warga sekitar yang melintas.</p>
-                    <p>Berawal dari rasa tertarik, masyarakat yang melintas mulai mampir untuk melihat, berkumpul (jagong), hingga akhirnya ikut berlatih gending bersama. Ajakan berkumpul seperti &quot;Ayo latihan gending!&quot; atau &quot;Latihan gending ning ngendi?&quot; menjadi perbincangan harian yang sangat populer di kalangan warga. Seiring berjalannya waktu, lidah masyarakat setempat yang terbiasa menyebut aktivitas &quot;latihan gending&quot; tersebut secara perlahan bergeser pelafalannya menjadi &quot;Gendeng&quot;.</p>
-                    <p>Meskipun terdapat anggapan dari sebagian pihak bahwa nama wilayah tersebut berasal dari sentra produksi genteng, penelusuran sejarah lokal menunjukkan hal yang berbeda. Secara historis, wilayah sekitar justru dikenal sebagai area penghasil batu padas. Pembagian nama sub-wilayah seperti Gendeng Padasan dan Gendeng Sapen (area yang dahulu banyak digunakan warga untuk memelihara sapi) semakin mempertegas identitas geografis dan histori kawasan ini di masa lalu.</p>
-                    <p>Kini, Kampung Gendeng berdiri kokoh sebagai salah satu pilar kebudayaan di Kelurahan Baciro. Akar kesenian yang ditanamkan oleh sang Abdi Dalem di masa lalu terbukti tidak pudar ditelan zaman. Semangat khalayak sawah yang berkumpul untuk menabuh gamelan di pos ronda era dulu kini bertransformasi menjadi semangat kolektif warga dalam melestarikan berbagai kesenian daerah hingga saat ini.</p>
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* Timeline */}
-            <div className="border-l-2 border-primary/20 pl-6 sm:pl-8 space-y-8 sm:space-y-10 relative ml-2 sm:ml-4">
-              {historyTimeline.map((item, idx) => (
-                <div key={idx} className="relative">
-                  <span className="absolute -left-[33px] sm:-left-[41px] top-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-primary border-4 border-white shadow-ios" />
-                  <span className="text-primary font-extrabold text-base sm:text-lg leading-none">{item.year}</span>
-                  <h3 className="text-sm sm:text-base font-extrabold text-dark mt-0.5">{item.title}</h3>
-                  <p className="text-medium text-xs mt-1 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+        <div className="max-w-4xl mx-auto px-5 sm:px-8">
+          <div className="flex flex-col items-center text-center mb-8">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tint text-primary font-extrabold text-xs uppercase tracking-wider mb-2">
+              <span>📜</span>
+              <span>{tr(t.profil.historyTag, lang)}</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-dark tracking-tight mt-1">
+              {tr(t.profil.historyH2, lang)}
+            </h2>
+          </div>
+          <div className="text-medium text-xs sm:text-sm leading-relaxed space-y-4 text-justify">
+            {lang === "en" ? (
+              <>
+                <p className="font-extrabold text-dark text-sm sm:text-base mb-2 text-center">The History of Kampung Gendeng: From Abdi Dalem&apos;s Gending to Cultural Heritage</p>
+                <p>The history of Kampung Gendeng in Baciro is deeply rooted in local oral traditions. The unique name does not refer to roof tiles or any other denotative meaning, but originated from a mispronunciation of the word <em>gending</em> (Javanese musical composition).</p>
+                <p>Long ago, a royal court artist (Abdi Dalem) lived in this area, which was surrounded by rice fields. He frequently played and taught Javanese gamelan. The beautiful <em>gending</em> melodies attracted local farmers and passersby who eventually joined the practice.</p>
+                <p>Phrases like &quot;Ayo latihan gending!&quot; (Let&apos;s practice gending!) gradually shifted in pronunciation to &quot;Gendeng&quot; over time. Historically, the area was also known for producing padas stone, further defining its geographical identity with sub-areas like Gendeng Padasan and Gendeng Sapen.</p>
+                <p>Today, Kampung Gendeng stands strong as a cultural pillar in Kelurahan Baciro, where the artistic legacy of the Abdi Dalem lives on through the community&apos;s collective spirit in preserving regional arts.</p>
+              </>
+            ) : (
+              <>
+                <p className="font-extrabold text-dark text-sm sm:text-base mb-2 text-center">Sejarah Kampung Gendeng: Dari Alunan Gending Abdi Dalem Hingga Warisan Kebudayaan</p>
+                <p>Keberadaan Kampung Gendeng yang terletak di wilayah Kelurahan Baciro tidak lepas dari rekam jejak sejarah dan tradisi lisan yang diwariskan secara turun-temurun. Namanya yang unik kerap memantik rasa ingin tahu masyarakat luas. Konon, penamaan &quot;Gendeng&quot; tidak berkaitan dengan pembuatan genteng bangunan atau makna denotatif lainnya, melainkan bermula dari kekeliruan pelafalan atau kesleo lidah dari kata dasar <em>gending</em>.</p>
+                <p>Kisah ini bermula di masa lampau ketika kawasan tersebut masih didominasi oleh hamparan sawah. Bermukimlah seorang Abdi Dalem seniman pengrawit Keraton Yogyakarta di sekitar area yang kini menjadi lapangan dekat pos ronda/pemukiman warga. Di sela-sela aktivitasnya, sang Abdi Dalem sering memainkan dan melatih gending-gending gamelan Jawa. Alunan merdu gending tersebut kerap terdengar hingga ke area persawahan dan menarik perhatian para petani serta warga sekitar yang melintas.</p>
+                <p>Berawal dari rasa tertarik, masyarakat yang melintas mulai mampir untuk melihat, berkumpul (jagong), hingga akhirnya ikut berlatih gending bersama. Ajakan berkumpul seperti &quot;Ayo latihan gending!&quot; atau &quot;Latihan gending ning ngendi?&quot; menjadi perbincangan harian yang sangat populer di kalangan warga. Seiring berjalannya waktu, lidah masyarakat setempat yang terbiasa menyebut aktivitas &quot;latihan gending&quot; tersebut secara perlahan bergeser pelafalannya menjadi &quot;Gendeng&quot;.</p>
+                <p>Meskipun terdapat anggapan dari sebagian pihak bahwa nama wilayah tersebut berasal dari sentra produksi genteng, penelusuran sejarah lokal menunjukkan hal yang berbeda. Secara historis, wilayah sekitar justru dikenal sebagai area penghasil batu padas. Pembagian nama sub-wilayah seperti Gendeng Padasan dan Gendeng Sapen (area yang dahulu banyak digunakan warga untuk memelihara sapi) semakin mempertegas identitas geografis dan histori kawasan ini di masa lalu.</p>
+                <p>Kini, Kampung Gendeng berdiri kokoh sebagai salah satu pilar kebudayaan di Kelurahan Baciro. Akar kesenian yang ditanamkan oleh sang Abdi Dalem di masa lalu terbukti tidak pudar ditelan zaman. Semangat khalayak sawah yang berkumpul untuk menabuh gamelan di pos ronda era dulu kini bertransformasi menjadi semangat kolektif warga dalam melestarikan berbagai kesenian daerah hingga saat ini.</p>
+              </>
+            )}
           </div>
         </div>
       </section>
