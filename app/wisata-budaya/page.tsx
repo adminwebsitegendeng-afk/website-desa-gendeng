@@ -126,15 +126,15 @@ export default function WisataBudaya() {
                       {dest.desc}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                    <span className="flex items-center gap-1.5 text-xs text-primary font-extrabold truncate max-w-[140px]">
-                      📍 {dest.loc}
+                  <div className="flex flex-col gap-3 pt-4 border-t border-gray-100 mt-auto">
+                    <span className="flex items-center gap-1.5 text-xs text-medium font-medium truncate w-full" title={dest.loc}>
+                      <span className="text-sm">📍</span> {dest.loc}
                     </span>
                     <Link
                       href={`/wisata-budaya/${dest.slug}`}
-                      className="inline-flex items-center gap-1 text-[11px] font-extrabold text-primary hover:text-primary-hover active-press uppercase tracking-wider"
+                      className="inline-flex items-center justify-center w-full gap-1.5 text-[11px] font-extrabold text-primary hover:text-white bg-tint/50 hover:bg-primary active-press uppercase tracking-wider py-2.5 rounded-xl transition-all"
                     >
-                      Lihat Selengkapnya &rarr;
+                      {lang === "en" ? "See Details" : "Lihat Selengkapnya"} &rarr;
                     </Link>
                   </div>
                 </div>
