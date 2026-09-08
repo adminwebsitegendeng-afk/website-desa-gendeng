@@ -167,15 +167,7 @@ function ContactFormContent() {
 
 export default function KontakLokasi() {
   const { lang } = useLanguage();
-  const [mapLocations, setMapLocations] = useState<MapLocation[]>([]);
 
-  useEffect(() => {
-    async function loadMap() {
-      const data = await getMapLocations();
-      setMapLocations(data);
-    }
-    loadMap();
-  }, []);
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
