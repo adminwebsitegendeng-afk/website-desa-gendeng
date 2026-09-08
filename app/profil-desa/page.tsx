@@ -169,30 +169,16 @@ export default function ProfilDesa() {
                 key={idx}
                 className="bg-white rounded-3xl overflow-hidden border border-gray-200/70 shadow-ios text-center flex flex-col hover-scale"
               >
-                <div className="h-56 sm:h-64 bg-tint/60 relative flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center w-full h-full">
-                    {official.image && official.image !== "" && official.image !== "/images/kades_portrait.png" ? (
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shadow-ios">
-                        <Image src={official.image} alt={official.name} fill className="object-cover" />
-                      </div>
-                    ) : (
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white flex items-center justify-center text-primary text-3xl sm:text-4xl font-bold shadow-ios">
-                        🧑‍💼
-                      </div>
-                    )}
-                    <span className="text-[11px] text-primary font-extrabold mt-3 tracking-wider uppercase bg-white px-3 py-1 rounded-full shadow-sm z-10">
-                      {lang === "en" ? "Community Administrator" : "Pemerintah Desa"}
-                    </span>
-                  </div>
+                <div className="h-64 sm:h-72 relative w-full bg-tint/20 flex items-center justify-center">
+                  {official.image && official.image !== "" && official.image !== "/images/kades_portrait.png" ? (
+                    <Image src={official.image} alt={official.name} fill className="object-cover object-top" />
+                  ) : (
+                    <div className="text-primary text-6xl opacity-30">🧑‍💼</div>
+                  )}
                 </div>
-                <div className="p-5 sm:p-6 bg-white flex flex-col flex-grow">
-                  <h3 className="text-base sm:text-lg font-extrabold text-dark">{official.name}</h3>
-                  <p className="text-xs sm:text-sm font-bold text-primary mt-0.5">{official.role}</p>
-                  <p className="text-xs text-medium mt-3 leading-relaxed border-t border-gray-100 pt-3">
-                    {lang === "en"
-                      ? "Responsible for administrative services and managing neighborhood affairs."
-                      : "Bertanggung jawab dalam pelayanan administrasi serta mengampu urusan ketatausahaan pamong desa."}
-                  </p>
+                <div className="p-5 sm:p-6 bg-white flex flex-col items-center justify-center border-t border-gray-100/50">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-dark">{official.name}</h3>
+                  <p className="text-xs sm:text-sm font-extrabold text-primary uppercase tracking-wider mt-1">{official.role}</p>
                 </div>
               </div>
             ))}
