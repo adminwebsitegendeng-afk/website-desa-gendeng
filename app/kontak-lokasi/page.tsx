@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { t, tr } from "@/lib/i18n/translations";
-import { getMapLocations } from "@/lib/admin/services/adminService";
-import { MapLocation } from "@/lib/admin/types";
 
 // Sub-component that accesses search parameters
 function ContactFormContent() {
